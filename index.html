@@ -1,1549 +1,1103 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محمد عبد السلام | مطوّر مواقع المؤسسات — موريتانيا</title>
-    <meta name="description" content="محمد عبد السلام — أبني للمؤسسات مواقع كاملة ومتاجر إلكترونية بلوحات تحكم سهلة، مدعومة بخبرة في سيكولوجية الرغبة والتسويق الرقمي. نواكشوط، موريتانيا.">
-    <meta name="theme-color" content="#080502">
-    <meta property="og:title" content="محمد عبد السلام — مطوّر مواقع المؤسسات">
-    <meta property="og:description" content="سيكولوجية الرغبة تُقابل التسويق الرقمي — رحلة صحراوية رقمية من نواكشوط.">
-    <link rel="canonical" href="https://mohamedabdselam.com/">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mohamedabdselam.com/">
-    <meta property="og:site_name" content="محمد عبد السلام">
-    <meta property="og:locale" content="ar_AR">
-    <meta property="og:image" content="https://mohamedabdselam.com/assets/desert/crest.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="محمد عبد السلام — مطوّر مواقع المؤسسات">
-    <meta name="twitter:description" content="سيكولوجية الرغبة تُقابل التسويق الرقمي — رحلة صحراوية رقمية من نواكشوط.">
-    <meta name="twitter:image" content="https://mohamedabdselam.com/assets/desert/crest.jpg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --night: #080502;
-            --night-soft: #0e0a05;
-            --panel: rgba(10, 7, 3, 0.72);
-            --panel-solid: rgba(9, 6, 2, 0.94);
-            --sand: #f3e7c8;
-            --sand-dim: #d6c59c;
-            --sand-faint: #94855f;
-            --gold: #c99a3f;
-            --gold-bright: #e8bf6a;
-            --gold-deep: #7a5a1e;
-            --hairline: rgba(201, 154, 63, 0.2);
-            --hairline-soft: rgba(201, 154, 63, 0.11);
-            --font-display-ar: 'Amiri', serif;
-            --font-body-ar: 'Tajawal', 'Segoe UI', sans-serif;
-            --font-display-lat: 'Cormorant Garamond', serif;
-            --font-mono: 'IBM Plex Mono', monospace;
-            --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html {
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(201, 154, 63, 0.35) transparent;
-        }
-
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(201, 154, 63, 0.35); }
-
-        ::selection { background: rgba(201, 154, 63, 0.35); color: #fff8e8; }
-
-        body {
-            background: var(--night);
-            color: var(--sand);
-            font-family: var(--font-body-ar);
-            font-weight: 400;
-            line-height: 1.95;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            min-height: 100vh;
-        }
-        html[dir="ltr"] body { font-family: var(--font-display-lat); }
-
-        .display { font-family: var(--font-display-ar); font-weight: 700; }
-        html[dir="ltr"] .display { font-family: var(--font-display-lat); font-weight: 500; }
-
-        .mono {
-            font-family: var(--font-mono);
-            font-weight: 400;
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-            font-size: 0.62rem;
-            color: var(--sand-faint);
-        }
-
-        a { color: inherit; text-decoration: none; }
-
-        a:focus-visible, button:focus-visible {
-            outline: 1px solid var(--gold);
-            outline-offset: 4px;
-        }
-
-        /* ============ PRELOADER ============ */
-        .preloader {
-            position: fixed;
-            inset: 0;
-            z-index: 200;
-            background: var(--night);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2.2rem;
-            transition: opacity 1.1s var(--ease-lux), visibility 1.1s;
-        }
-        body.loaded .preloader { opacity: 0; visibility: hidden; pointer-events: none; }
-        .preloader-mark {
-            font-size: 2.6rem;
-            color: var(--gold);
-            line-height: 1;
-            animation: markBreathe 2.4s ease-in-out infinite;
-        }
-        @keyframes markBreathe {
-            0%, 100% { opacity: 0.45; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.06); }
-        }
-        .preloader-counter {
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
-            letter-spacing: 0.5em;
-            color: var(--sand-dim);
-        }
-        .preloader-track {
-            width: min(220px, 50vw);
-            height: 1px;
-            background: rgba(201, 154, 63, 0.15);
-            overflow: hidden;
-        }
-        .preloader-bar {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright));
-        }
-
-        /* ============ PHOTO JOURNEY — desktop: fixed cinematic crossfade ============ */
-        .bg-stack {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            background: #0a0703;
-            overflow: hidden;
-        }
-        .bg-ph {
-            position: absolute;
-            inset: -4%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transform: scale(1.03);
-            filter: sepia(0.13) saturate(1.04) contrast(1.02) brightness(0.88);
-            transition: opacity 1.8s ease;
-            will-change: opacity, transform;
-        }
-        .bg-ph.on { opacity: 1; animation: kenburns 30s ease-in-out infinite alternate; }
-        @keyframes kenburns {
-            from { transform: scale(1.03) translateY(0.8%); }
-            to   { transform: scale(1.11) translateY(-0.8%); }
-        }
-        .bg-scrim {
-            position: fixed;
-            inset: 0;
-            z-index: 1;
-            pointer-events: none;
-            background: linear-gradient(180deg, rgba(8, 5, 2, 0.5) 0%, rgba(8, 5, 2, 0.16) 30%, rgba(8, 5, 2, 0.2) 62%, rgba(8, 5, 2, 0.58) 100%);
-        }
-
-        .vignette {
-            position: fixed;
-            inset: 0;
-            z-index: 1;
-            pointer-events: none;
-            background:
-                linear-gradient(180deg, rgba(5, 3, 1, 0.3) 0%, transparent 16%),
-                radial-gradient(ellipse at 50% 50%, transparent 62%, rgba(4, 2, 0, 0.5) 100%);
-        }
-
-        /* ============ HUD ============ */
-        .hud-item {
-            position: fixed;
-            z-index: 50;
-            opacity: 0;
-            transition: opacity 1.4s ease 0.9s;
-        }
-        body.loaded .hud-item { opacity: 1; }
-
-        .hud-name {
-            top: 1.6rem;
-            inset-inline-start: 2rem;
-            line-height: 1.9;
-        }
-        .hud-name .mono { color: var(--sand-dim); display: block; }
-        .hud-name .mono + .mono { color: var(--sand-faint); font-size: 0.56rem; }
-
-        .hud-lang {
-            top: 1.6rem;
-            inset-inline-end: 2rem;
-            display: flex;
-            gap: 1.1rem;
-            align-items: center;
-        }
-        .lang-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-family: var(--font-mono);
-            font-size: 0.62rem;
-            letter-spacing: 0.22em;
-            color: var(--sand-faint);
-            padding: 0.3rem 0.1rem;
-            transition: color 0.4s;
-        }
-        .lang-btn:hover { color: var(--sand); }
-        .lang-btn.active { color: var(--gold-bright); }
-
-        .hud-coords {
-            bottom: 1.6rem;
-            inset-inline-start: 2rem;
-        }
-        .hud-wa {
-            bottom: 1.6rem;
-            inset-inline-end: 2rem;
-        }
-        .hud-wa .mono { transition: color 0.4s; }
-        .hud-wa:hover .mono { color: var(--gold-bright); }
-
-        .scroll-hint {
-            position: fixed;
-            bottom: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 50;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.7rem;
-            opacity: 0;
-            transition: opacity 1.4s ease 1.6s;
-        }
-        body.loaded .scroll-hint { opacity: 1; }
-        body.loaded.scrolled .scroll-hint { opacity: 0; transition: opacity 0.6s ease; }
-        .scroll-hint-line {
-            width: 1px;
-            height: 42px;
-            background: linear-gradient(180deg, transparent, var(--gold));
-            overflow: hidden;
-            position: relative;
-        }
-        .scroll-hint-line::after {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, transparent, var(--gold-bright));
-            animation: scrollDrip 2.2s var(--ease-lux) infinite;
-        }
-        @keyframes scrollDrip {
-            0% { top: -100%; }
-            60%, 100% { top: 100%; }
-        }
-
-        /* ============ CURSOR ============ */
-        .cursor-dot, .cursor-ring {
-            position: fixed;
-            top: 0; left: 0;
-            pointer-events: none;
-            z-index: 300;
-            border-radius: 50%;
-            display: none;
-        }
-        .cursor-dot {
-            width: 5px; height: 5px;
-            background: var(--gold-bright);
-            transform: translate(-50%, -50%);
-        }
-        .cursor-ring {
-            width: 34px; height: 34px;
-            border: 1px solid rgba(201, 154, 63, 0.4);
-            transform: translate(-50%, -50%);
-            transition: width 0.35s var(--ease-lux), height 0.35s var(--ease-lux), border-color 0.35s;
-        }
-        body.cursor-hover .cursor-ring {
-            width: 58px; height: 58px;
-            border-color: rgba(232, 191, 106, 0.8);
-        }
-        @media (pointer: fine) {
-            .cursor-dot, .cursor-ring { display: block; }
-        }
-
-        /* ============ SCENES ============ */
-        main { position: relative; z-index: 10; }
-
-        .scene {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 15vh 7vw;
-            position: relative;
-        }
-
-        .scene-inner { width: 100%; max-width: 1060px; margin: 0 auto; }
-
-        /* content panels — the "emerging" cards behind each dune */
-        .panel {
-            background: var(--panel);
-            -webkit-backdrop-filter: blur(18px) saturate(1.1);
-            backdrop-filter: blur(18px) saturate(1.1);
-            border: 1px solid var(--hairline-soft);
-            border-radius: 6px;
-            padding: clamp(2rem, 4.5vw, 3.8rem);
-        }
-
-        .scene-tag {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            margin-bottom: 2.8rem;
-        }
-        .scene-tag::after {
-            content: '';
-            height: 1px;
-            width: 64px;
-            background: linear-gradient(var(--dir-grad, 90deg), var(--gold), transparent);
-        }
-        html[dir="rtl"] .scene-tag::after { --dir-grad: -90deg; }
-        .scene-tag .mono { color: var(--gold); }
-
-        .ornament {
-            text-align: center;
-            color: var(--gold-deep);
-            font-size: 1.5rem;
-            padding: 2rem 0;
-            position: relative;
-            z-index: 10;
-            opacity: 0.85;
-        }
-
-        /* --- emerge reveal: content rises from behind the dunes --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(80px) scale(0.965);
-            filter: blur(10px);
-            transition:
-                opacity 1.3s var(--ease-lux),
-                transform 1.3s var(--ease-lux),
-                filter 1.3s var(--ease-lux);
-            transition-delay: var(--d, 0s);
-            will-change: opacity, transform, filter;
-        }
-        .reveal.in { opacity: 1; transform: none; filter: none; }
-
-        /* ============ HERO ============ */
-        .hero {
-            min-height: 100svh;
-            align-items: center;
-            text-align: center;
-            justify-content: center;
-        }
-        .hero-eyebrow {
-            margin-bottom: 2.6rem;
-            color: var(--gold);
-        }
-        .hero-name {
-            font-size: clamp(3.4rem, 12.5vw, 8.6rem);
-            line-height: 1.28;
-            color: #f7ecce;
-            text-shadow: 0 0 90px rgba(201, 154, 63, 0.3), 0 2px 30px rgba(5, 3, 1, 0.9);
-            margin-bottom: 1.4rem;
-        }
-        html[dir="ltr"] .hero-name {
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            line-height: 1.05;
-            font-size: clamp(2.6rem, 9.5vw, 7rem);
-        }
-        .hero-sep {
-            width: 120px;
-            height: 1px;
-            margin: 0 auto 1.8rem;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-        }
-        .hero-tagline {
-            font-family: var(--font-display-ar);
-            font-weight: 400;
-            font-size: clamp(1.2rem, 2.6vw, 1.75rem);
-            color: var(--gold-bright);
-            margin-bottom: 1.6rem;
-            text-shadow: 0 2px 22px rgba(5, 3, 1, 0.95);
-        }
-        html[dir="ltr"] .hero-tagline {
-            font-family: var(--font-display-lat);
-            font-style: italic;
-        }
-        .hero-sub {
-            max-width: 580px;
-            margin: 0 auto;
-            font-size: clamp(0.98rem, 1.7vw, 1.1rem);
-            color: var(--sand-dim);
-            text-shadow: 0 2px 18px rgba(5, 3, 1, 0.95), 0 0 40px rgba(5, 3, 1, 0.7);
-        }
-
-        .hero .stage {
-            opacity: 0;
-            transform: translateY(34px);
-            transition: opacity 1.4s var(--ease-lux), transform 1.4s var(--ease-lux);
-        }
-        body.loaded .hero .stage { opacity: 1; transform: translateY(0); }
-        body.loaded .hero div.stage:nth-of-type(2) { transition-delay: 0.15s; } /* eyebrow (div 1 is the photo) */
-        body.loaded .hero h1.stage { transition-delay: 0.35s; }                 /* name */
-        body.loaded .hero div.stage:nth-of-type(3) { transition-delay: 0.65s; } /* separator */
-        body.loaded .hero p.stage:nth-of-type(1) { transition-delay: 0.8s; }    /* tagline */
-        body.loaded .hero p.stage:nth-of-type(2) { transition-delay: 1.0s; }    /* sub */
-
-        /* ============ MANIFESTO ============ */
-        .manifesto-text {
-            font-family: var(--font-display-ar);
-            font-weight: 400;
-            font-size: clamp(1.5rem, 3.8vw, 2.55rem);
-            line-height: 2.05;
-            color: #f2e5c2;
-            max-width: 920px;
-        }
-        html[dir="ltr"] .manifesto-text {
-            font-family: var(--font-display-lat);
-            line-height: 1.6;
-        }
-        .manifesto-text em {
-            font-style: normal;
-            color: var(--gold-bright);
-        }
-        html[dir="ltr"] .manifesto-text em { font-style: italic; }
-
-        .stats-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 3rem 5rem;
-            margin-top: 4rem;
-            padding-top: 2.4rem;
-            border-top: 1px solid var(--hairline-soft);
-        }
-        .stat-num {
-            font-family: var(--font-display-ar);
-            font-weight: 700;
-            font-size: clamp(2.4rem, 5vw, 3.6rem);
-            line-height: 1.15;
-            color: var(--gold);
-            display: block;
-        }
-        html[dir="ltr"] .stat-num { font-family: var(--font-display-lat); font-weight: 500; }
-        .stat-label {
-            display: block;
-            margin-top: 0.5rem;
-            font-size: 0.88rem;
-            color: var(--sand-dim);
-            max-width: 180px;
-            line-height: 1.75;
-        }
-
-        /* ============ EXPERTISE ============ */
-        .section-title {
-            font-size: clamp(1.9rem, 4.5vw, 3.1rem);
-            line-height: 1.5;
-            color: #f4e8c8;
-            margin-bottom: 3.4rem;
-            max-width: 760px;
-        }
-
-        .svc-list { border-top: 1px solid var(--hairline); }
-        .svc-row {
-            display: grid;
-            grid-template-columns: 4rem 1fr 1.6fr;
-            gap: 2rem;
-            padding: 2.4rem 0.5rem;
-            border-bottom: 1px solid var(--hairline);
-            transition: background 0.5s;
-        }
-        .svc-row:hover { background: rgba(201, 154, 63, 0.05); }
-        .svc-num {
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
-            letter-spacing: 0.2em;
-            color: var(--gold-deep);
-            padding-top: 0.55rem;
-            transition: color 0.5s;
-        }
-        .svc-row:hover .svc-num { color: var(--gold-bright); }
-        .svc-title {
-            font-family: var(--font-display-ar);
-            font-weight: 700;
-            font-size: clamp(1.3rem, 2.4vw, 1.7rem);
-            line-height: 1.6;
-            color: var(--sand);
-            transition: color 0.5s;
-        }
-        html[dir="ltr"] .svc-title { font-family: var(--font-display-lat); font-weight: 500; }
-        .svc-row:hover .svc-title { color: var(--gold-bright); }
-        .svc-desc {
-            font-size: 0.98rem;
-            color: var(--sand-dim);
-            line-height: 2;
-        }
-
-        /* ============ WORKS ============ */
-        .work-item {
-            display: block;
-            padding: 3rem 0.5rem;
-            border-bottom: 1px solid var(--hairline);
-            transition: background 0.5s;
-        }
-        .work-item:first-of-type { border-top: 1px solid var(--hairline); }
-        .work-item:hover { background: rgba(201, 154, 63, 0.05); }
-        .work-title {
-            font-size: clamp(2rem, 5.5vw, 3.6rem);
-            line-height: 1.45;
-            color: #f2e5c2;
-            display: flex;
-            align-items: baseline;
-            gap: 1.4rem;
-            transition: color 0.5s;
-        }
-        .work-item:hover .work-title { color: var(--gold-bright); }
-        .work-arrow {
-            font-family: var(--font-mono);
-            font-size: 0.55em;
-            color: var(--gold-deep);
-            transition: transform 0.5s var(--ease-lux), color 0.5s;
-            display: inline-block;
-        }
-        .work-item:hover .work-arrow {
-            color: var(--gold-bright);
-            transform: translate(6px, -6px);
-        }
-        html[dir="rtl"] .work-item:hover .work-arrow { transform: translate(-6px, -6px); }
-        .work-meta {
-            margin-top: 0.9rem;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 1.4rem;
-        }
-        .work-meta .mono { letter-spacing: 0.18em; font-size: 0.66rem; color: var(--sand-dim); }
-        .work-live {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            font-family: var(--font-mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--gold);
-        }
-        .work-live::before {
-            content: '';
-            width: 5px; height: 5px;
-            border-radius: 50%;
-            background: var(--gold-bright);
-            animation: livePulse 2s ease-in-out infinite;
-        }
-        @keyframes livePulse {
-            0%, 100% { opacity: 0.4; box-shadow: 0 0 0 0 rgba(232, 191, 106, 0.4); }
-            50% { opacity: 1; box-shadow: 0 0 8px 1px rgba(232, 191, 106, 0.5); }
-        }
-
-        /* ============ PLANS ============ */
-        .plans-desc {
-            color: var(--sand-dim);
-            font-size: 0.98rem;
-            max-width: 540px;
-            margin: -1.8rem 0 3.4rem;
-        }
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--hairline-soft);
-            border: 1px solid var(--hairline-soft);
-        }
-        .plan {
-            background: rgba(10, 7, 3, 0.55);
-            padding: 2.6rem 1.9rem 2.3rem;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            transition: background 0.5s;
-        }
-        .plan:hover { background: rgba(16, 11, 5, 0.7); }
-        .plan.featured {
-            background: linear-gradient(180deg, rgba(201, 154, 63, 0.1), rgba(201, 154, 63, 0.03));
-            outline: 1px solid rgba(201, 154, 63, 0.45);
-            outline-offset: -1px;
-        }
-        .plan-badge {
-            position: absolute;
-            top: -0.55rem;
-            inset-inline-start: 1.9rem;
-            background: #120c04;
-            padding: 0.1rem 0.8rem;
-            font-family: var(--font-mono);
-            font-size: 0.58rem;
-            letter-spacing: 0.24em;
-            text-transform: uppercase;
-            color: var(--gold-bright);
-            border: 1px solid rgba(201, 154, 63, 0.35);
-            border-radius: 3px;
-        }
-        .plan-name {
-            font-family: var(--font-display-ar);
-            font-weight: 700;
-            font-size: 1.55rem;
-            color: #f4e8c8;
-            margin-bottom: 0.7rem;
-        }
-        html[dir="ltr"] .plan-name { font-family: var(--font-display-lat); font-weight: 500; }
-        .plan-desc {
-            font-size: 0.86rem;
-            color: var(--sand-dim);
-            line-height: 1.9;
-            margin-bottom: 1.7rem;
-            min-height: 3.2em;
-        }
-        .plan-features {
-            list-style: none;
-            flex: 1;
-            margin-bottom: 2.1rem;
-        }
-        .plan-features li {
-            font-size: 0.87rem;
-            color: var(--sand-dim);
-            padding: 0.7rem 0;
-            border-top: 1px solid var(--hairline-soft);
-            display: flex;
-            gap: 0.7rem;
-            line-height: 1.75;
-        }
-        .plan-features li::before {
-            content: '✦';
-            color: var(--gold-deep);
-            font-size: 0.6rem;
-            padding-top: 0.35em;
-            flex-shrink: 0;
-        }
-        .plan-cta {
-            display: block;
-            text-align: center;
-            padding: 0.9rem 1rem;
-            border: 1px solid rgba(201, 154, 63, 0.45);
-            border-radius: 3px;
-            font-family: var(--font-mono);
-            font-size: 0.62rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--sand);
-            transition: background 0.4s, color 0.4s, border-color 0.4s;
-        }
-        .plan-cta:hover {
-            background: var(--gold);
-            border-color: var(--gold);
-            color: var(--night);
-        }
-
-        /* ============ CONTACT ============ */
-        .contact { text-align: center; align-items: center; }
-        .contact .scene-tag { justify-content: center; }
-        .contact .scene-tag::after { display: none; }
-        .contact-title {
-            font-size: clamp(2.8rem, 9vw, 6rem);
-            line-height: 1.4;
-            color: #f7ecce;
-            text-shadow: 0 0 80px rgba(201, 154, 63, 0.3), 0 2px 26px rgba(5, 3, 1, 0.9);
-            margin-bottom: 1.8rem;
-        }
-        .contact-desc {
-            max-width: 540px;
-            margin: 0 auto 3rem;
-            color: var(--sand-dim);
-            font-size: 1rem;
-            text-shadow: 0 2px 18px rgba(5, 3, 1, 0.95);
-        }
-        .contact-actions {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 1.4rem;
-        }
-        .btn-wa {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-            background: linear-gradient(135deg, var(--gold), #a87c2a);
-            color: #140d02;
-            font-weight: 500;
-            font-family: inherit;
-            font-size: 1.02rem;
-            padding: 1.05rem 2.6rem;
-            border-radius: 100px;
-            transition: transform 0.4s var(--ease-lux), box-shadow 0.4s;
-        }
-        .btn-wa:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 44px rgba(201, 154, 63, 0.3);
-        }
-        .btn-wa svg { width: 20px; height: 20px; flex-shrink: 0; }
-        .btn-call {
-            padding: 1.05rem 2.2rem;
-            border: 1px solid rgba(201, 154, 63, 0.45);
-            border-radius: 100px;
-            font-size: 0.98rem;
-            color: var(--sand);
-            transition: border-color 0.4s, color 0.4s;
-        }
-        .btn-call:hover { border-color: var(--gold-bright); color: var(--gold-bright); }
-        .contact-number { margin-top: 2.6rem; direction: ltr; }
-        .contact-number .mono { font-size: 0.72rem; color: var(--sand-dim); }
-
-        /* ============ QUOTE INTERLUDES ============ */
-        .quote-scene { text-align: center; align-items: center; }
-        .quote-orn {
-            color: var(--gold-bright);
-            font-size: 1.4rem;
-            margin-bottom: 2.2rem;
-            opacity: 0.9;
-        }
-        .quote-text {
-            font-family: var(--font-display-ar);
-            font-weight: 400;
-            font-size: clamp(1.55rem, 4vw, 2.8rem);
-            line-height: 2.1;
-            color: #f7ecce;
-            max-width: 880px;
-            margin: 0 auto;
-            text-shadow: 0 2px 30px rgba(5, 3, 1, 0.95), 0 0 70px rgba(5, 3, 1, 0.75);
-        }
-        html[dir="ltr"] .quote-text { font-family: var(--font-display-lat); font-style: italic; line-height: 1.7; }
-        .quote-text em { font-style: normal; color: var(--gold-bright); }
-        .quote-src { margin-top: 2.4rem; }
-        .quote-src .mono { color: var(--gold); text-shadow: 0 2px 14px rgba(5, 3, 1, 0.95); }
-
-        /* ============ MOBILE-ONLY PHOTO ELEMENTS (hidden on desktop) ============ */
-        .chapter-cover, .scene-photo { display: none; }
-
-        /* ============ PHOTO CREDITS ============ */
-        .photo-credits { margin-top: 3.2rem; opacity: 0.7; }
-        .photo-credits .mono { font-size: 0.5rem; letter-spacing: 0.12em; text-transform: none; }
-
-        /* ============ DESKTOP ONLY ============ */
-        @media (min-width: 901px) {
-            .scene-inner.panel { max-width: 1060px; }
-        }
-
-        /* ============ TABLET ============ */
-        @media (max-width: 900px) {
-            .svc-row { grid-template-columns: 2.6rem 1fr; gap: 1.2rem 1.4rem; }
-            .svc-desc { grid-column: 2; }
-            .plans-grid { grid-template-columns: 1fr; }
-            .plan.featured { order: -1; }
-        }
-
-        /* ============ MOBILE — a distinct, calmer reading experience ============ */
-        @media (max-width: 640px) {
-            body { line-height: 1.85; }
-            .scene { padding: 11vh 5vw; }
-            .panel {
-                background: var(--panel-solid);
-                -webkit-backdrop-filter: none;
-                backdrop-filter: none;
-                border-radius: 8px;
-                padding: 1.7rem 1.3rem;
-                border-color: var(--hairline);
-            }
-            /* simpler, cheaper emergence on phones */
-            .reveal {
-                transform: translateY(44px);
-                filter: none;
-                transition: opacity 0.9s var(--ease-lux), transform 0.9s var(--ease-lux);
-            }
-            .hud-name { inset-inline-start: 1.2rem; top: 1.1rem; }
-            .hud-lang { inset-inline-end: 1.2rem; top: 1.1rem; gap: 0.9rem; }
-            .hud-coords { display: none; }
-            .hud-wa {
-                inset-inline-end: auto;
-                inset-inline-start: auto;
-                left: 50%;
-                right: auto;
-                transform: translateX(-50%);
-                bottom: 1.1rem;
-                background: rgba(9, 6, 2, 0.85);
-                border: 1px solid var(--hairline);
-                border-radius: 100px;
-                padding: 0.55rem 1.2rem;
-                white-space: nowrap;
-            }
-            .scroll-hint { display: none; }
-            .hero-name {
-                line-height: 1.45;
-                font-size: 2.75rem;
-                text-shadow: 0 2px 26px rgba(5, 3, 1, 0.95), 0 0 60px rgba(5, 3, 1, 0.7);
-            }
-            .hero-tagline, .hero-sub { text-shadow: 0 2px 14px rgba(5, 3, 1, 0.95), 0 0 34px rgba(5, 3, 1, 0.85); }
-            .hero-sub { font-size: 0.95rem; }
-            .manifesto-text { font-size: 1.35rem; line-height: 2.1; }
-            .stats-row { gap: 1.8rem 2.2rem; margin-top: 2.8rem; }
-            .stat-label { font-size: 0.8rem; max-width: 140px; }
-            .scene-tag { margin-bottom: 2rem; }
-            .section-title { margin-bottom: 2.4rem; }
-            .svc-row { padding: 1.8rem 0.2rem; }
-            .svc-desc { font-size: 0.92rem; }
-            .work-item { padding: 2.2rem 0.2rem; }
-            .work-title { gap: 0.8rem; }
-            .work-meta { gap: 0.8rem; }
-            .plan { padding: 2.2rem 1.4rem 2rem; }
-            .contact-actions { flex-direction: column; width: 100%; }
-            .btn-wa, .btn-call { width: 100%; max-width: 320px; }
-            .contact-number { margin-top: 2rem; }
-            .contact { padding-bottom: 16vh; }
-            .hero-tagline { font-size: 1.32rem; }
-            .hero-sub { padding: 0 0.4rem; }
-            .section-title { font-size: 1.72rem; line-height: 1.6; }
-            .manifesto-text { color: #f6ecd2; }
-            .work-title { font-size: 1.85rem; }
-        }
-
-        /* ============ MOBILE — a separate editorial journey: real photos, full-bleed covers ============ */
-        @media (max-width: 768px) {
-            .bg-stack, .bg-scrim, .vignette { display: none; }
-            body { background: #0b0704; }
-            .cursor-dot, .cursor-ring { display: none !important; }
-
-            /* full-bleed photo behind hero, quotes and contact */
-            .scene-photo {
-                display: block;
-                position: absolute;
-                inset: 0;
-                overflow: hidden;
-                z-index: 0;
-            }
-            .scene-photo img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                filter: sepia(0.12) saturate(1.05) brightness(0.85);
-            }
-            .scene-photo::after {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(180deg, rgba(8, 5, 2, 0.55) 0%, rgba(8, 5, 2, 0.24) 34%, rgba(8, 5, 2, 0.3) 62%, rgba(11, 7, 4, 0.94) 100%);
-            }
-            .scene-photo ~ * { position: relative; z-index: 2; }
-
-            /* chapter covers: full-bleed photo, chapter label burned into the lower corner */
-            .chaptered { padding-top: 0; justify-content: flex-start; }
-            .chapter-cover {
-                display: block;
-                position: relative;
-                height: 56svh;
-                margin: 0 -5vw 1.6rem;
-                overflow: hidden;
-            }
-            .chapter-cover img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                filter: sepia(0.12) saturate(1.05) brightness(0.92);
-            }
-            .cover-scrim {
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(180deg, rgba(11, 7, 4, 0.5) 0%, transparent 34%, transparent 52%, rgba(11, 7, 4, 0.97) 100%);
-            }
-            .cover-label {
-                position: absolute;
-                bottom: 1.15rem;
-                inset-inline-start: 1.35rem;
-            }
-            .cover-label .mono { color: var(--gold-bright); font-size: 0.62rem; }
-
-            .quote-scene { min-height: 88svh; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            .reveal, .hero .stage {
-                transition: opacity 0.6s ease;
-                transform: none;
-                filter: none;
-            }
-            .scroll-hint-line::after, .preloader-mark { animation: none; }
-            .work-live::before { animation: none; opacity: 1; }
-            .bg-ph.on { animation: none; }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>محمد عبد السلام — مؤسّس شركة سند للمعدات الطبية | نواكشوط</title>
+<meta name="description" content="محمد عبد السلام، مؤسّس ومدير شركة سند للمعدات الطبية في نواكشوط: توريد، مبيعات وتفاوض، تخليص جمركي، وتقنية. منفتح على الوكالات والتوزيع والشراكات.">
+<meta name="author" content="Mouhamed Abdselam">
+<meta name="theme-color" content="#05060f">
+<link rel="canonical" href="https://mohamedabdselam.com/">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://mohamedabdselam.com/">
+<meta property="og:site_name" content="محمد عبد السلام">
+<meta property="og:title" content="محمد عبد السلام — مؤسّس شركة سند للمعدات الطبية">
+<meta property="og:description" content="أبني أعمالًا صغيرة بعقلية أنظمة كبيرة. توريد معدات طبية، تطوير أعمال، وتقنية — من نواكشوط.">
+<meta property="og:image" content="https://mohamedabdselam.com/assets/brand/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ar_MR">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="محمد عبد السلام — مؤسّس شركة سند للمعدات الطبية">
+<meta name="twitter:description" content="أبني أعمالًا صغيرة بعقلية أنظمة كبيرة. توريد معدات طبية، تطوير أعمال، وتقنية — من نواكشوط.">
+<meta name="twitter:image" content="https://mohamedabdselam.com/assets/brand/og-cover.jpg">
+<link rel="icon" href="assets/brand/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/brand/logo-256.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Readex+Pro:wght@300;400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#05060f;color:#e8ecf6;font-family:"IBM Plex Sans Arabic","Readex Pro",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  *{box-sizing:border-box}
+  a{color:#cbb27a;text-decoration:none}
+  a:hover{color:#f0dca8}
+  ::selection{background:rgba(124,92,225,.45)}
+  @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-60px,-90px,0)}}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes pulse{0%,100%{opacity:.3}50%{opacity:.85}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes shine{from{background-position:0% 50%}to{background-position:200% 50%}}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
 </head>
 <body>
+<noscript>
+  <div style="max-width:760px;margin:0 auto;padding:48px 24px;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;line-height:1.9">
+    <h1 style="font-family:Amiri,Georgia,serif">محمد عبد السلام</h1>
+    <p>مؤسّس ومدير شركة سند للمعدات الطبية — نواكشوط، موريتانيا. توريد المعدات الطبية، المبيعات والتفاوض، التخليص الجمركي والشحن، والتسويق الرقمي.</p>
+    <p>هذا الموقع يحتاج تفعيل JavaScript لعرضه كاملًا. للتواصل المباشر:
+      <a href="https://wa.me/22224555506">واتساب</a> ·
+      <a href="mailto:mouhamedabselam25@gmail.com">البريد الإلكتروني</a> ·
+      <a href="https://www.linkedin.com/in/mouhamed-abdselam-415879424">لينكدإن</a>
+    </p>
+  </div>
+</noscript>
+<div id="app"></div>
 
-    <!-- PRELOADER -->
-    <div class="preloader" aria-hidden="true">
-        <div class="preloader-mark">۞</div>
-        <div class="preloader-track"><div class="preloader-bar" id="preloaderBar"></div></div>
-        <div class="preloader-counter"><span id="preloaderNum">000</span></div>
+<template id="tpl">
+<div dir="{{ dir }}" lang="{{ lang }}" style="position:relative;min-height:100vh;background:radial-gradient(120% 80% at 78% -10%, #1b1348 0%, rgba(27,19,72,0) 55%), radial-gradient(90% 60% at 6% 12%, #0b2350 0%, rgba(11,35,80,0) 60%), linear-gradient(180deg,#05060f 0%,#070a1a 45%,#05060f 100%)">
+
+  <div style="position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.7;background-image:radial-gradient(1.4px 1.4px at 20% 30%,#fff 50%,transparent 51%),radial-gradient(1.1px 1.1px at 70% 15%,#cdd8ff 50%,transparent 51%),radial-gradient(1.6px 1.6px at 45% 70%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 85% 55%,#e6d3a8 50%,transparent 51%),radial-gradient(1.2px 1.2px at 12% 80%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 60% 90%,#bcd0ff 50%,transparent 51%);background-size:420px 420px,320px 320px,540px 540px,260px 260px,380px 380px,300px 300px;animation:drift 90s linear infinite alternate"></div>
+
+  <sc-if value="{{ showGate }}" hint-placeholder-val="{{ true }}">
+    <div style="position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:24px;overflow:hidden;background:radial-gradient(70% 55% at 50% 40%, #1a1246 0%, #07091a 62%, #04050c 100%)">
+      <div style="position:absolute;width:min(780px,130vw);aspect-ratio:1;border-radius:50%;border:1px solid rgba(140,160,255,.14);animation:spin 80s linear infinite"></div>
+      <div style="position:absolute;width:min(470px,92vw);aspect-ratio:1;border-radius:50%;border:1px dashed rgba(203,178,122,.2);animation:spin 48s linear infinite reverse"></div>
+      <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:34px;text-align:center;animation:fadeUp .9s both">
+        <div style="width:118px;height:118px;border-radius:50%;padding:3px;background:conic-gradient(from 210deg,#cbb27a,#7c5ce1,#4c7cf3,#cbb27a);box-shadow:0 0 70px rgba(124,92,225,.4)">
+          <img src="assets/founder.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 18%;border-radius:50%;filter:saturate(.9) contrast(1.05)">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="font-family:'Readex Pro',sans-serif;font-size:clamp(24px,4vw,38px);font-weight:600;letter-spacing:-.01em;background:linear-gradient(100deg,#ffffff,#cbb27a,#a9b8ff,#ffffff);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 9s linear infinite">Mouhamed Abdselam</div>
+          <div style="font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,212,240,.5)">اختر اللغة · Choisir la langue · Language</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+          <button onClick="{{ pickAr }}" style="cursor:pointer;padding:16px 34px;min-width:168px;border-radius:2px;border:1px solid rgba(203,178,122,.38);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.02));color:#f2f4fb;font-family:'Readex Pro',sans-serif;font-size:19px;font-weight:500;backdrop-filter:blur(10px);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s" style-hover="transform:translateY(-4px);box-shadow:0 18px 50px rgba(203,178,122,.26);border-color:rgba(203,178,122,.85)">العربية</button>
+          <button onClick="{{ pickFr }}" style="cursor:pointer;padding:16px 34px;min-width:168px;border-radius:2px;border:1px solid rgba(140,160,255,.3);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.02));color:#f2f4fb;font-family:'Readex Pro',sans-serif;font-size:19px;font-weight:500;backdrop-filter:blur(10px);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s" style-hover="transform:translateY(-4px);box-shadow:0 18px 50px rgba(124,92,225,.3);border-color:rgba(160,175,255,.8)">Français</button>
+          <button onClick="{{ pickEn }}" style="cursor:pointer;padding:16px 34px;min-width:168px;border-radius:2px;border:1px solid rgba(140,160,255,.3);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.02));color:#f2f4fb;font-family:'Readex Pro',sans-serif;font-size:19px;font-weight:500;backdrop-filter:blur(10px);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s" style-hover="transform:translateY(-4px);box-shadow:0 18px 50px rgba(124,92,225,.3);border-color:rgba(160,175,255,.8)">English</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <header style="position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:linear-gradient(180deg,rgba(5,6,15,.88),rgba(5,6,15,.3));border-bottom:1px solid rgba(255,255,255,.06)">
+    <div style="max-width:1240px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;gap:18px;justify-content:space-between">
+      <a href="#top" style="display:flex;align-items:center;gap:11px;color:#eef1fa">
+        <img src="assets/founder.jpg" alt="" style="width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:50% 18%;box-shadow:0 0 0 1px rgba(203,178,122,.45)">
+        <span style="font-family:'Readex Pro',sans-serif;font-size:15.5px;font-weight:600">{{ t.brand }}</span>
+      </a>
+      <nav style="display:flex;align-items:center;gap:24px;font-size:13.5px;color:rgba(214,222,242,.7)">
+        <sc-for list="{{ t.nav }}" as="n" hint-placeholder-count="5">
+          <a href="{{ n.href }}" style="color:rgba(214,222,242,.7);transition:color .25s" style-hover="color:#fff">{{ n.label }}</a>
+        </sc-for>
+      </nav>
+      <div style="display:flex;align-items:center;gap:7px">
+        <button onClick="{{ pickAr }}" style="cursor:pointer;padding:7px 11px;border-radius:9px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(226,232,246,.8);font-family:inherit;font-size:12.5px;transition:.25s" style-hover="border-color:rgba(203,178,122,.7);color:#fff">ع</button>
+        <button onClick="{{ pickFr }}" style="cursor:pointer;padding:7px 11px;border-radius:9px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(226,232,246,.8);font-family:inherit;font-size:12.5px;transition:.25s" style-hover="border-color:rgba(203,178,122,.7);color:#fff">FR</button>
+        <button onClick="{{ pickEn }}" style="cursor:pointer;padding:7px 11px;border-radius:9px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(226,232,246,.8);font-family:inherit;font-size:12.5px;transition:.25s" style-hover="border-color:rgba(203,178,122,.7);color:#fff">EN</button>
+        <a href="{{ waLink }}" target="_blank" style="margin-inline-start:5px;padding:9px 17px;border-radius:10px;background:linear-gradient(120deg,#cbb27a,#f0dfb4);color:#12101c;font-size:13px;font-weight:600;box-shadow:0 10px 30px rgba(203,178,122,.26);transition:transform .3s" style-hover="transform:translateY(-2px);color:#12101c">{{ t.contactShort }}</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="top" style="position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:clamp(36px,6vw,84px) 24px clamp(56px,8vw,112px);display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:clamp(30px,5vw,70px);align-items:center">
+    <div style="display:flex;flex-direction:column;gap:26px;animation:fadeUp 1s both">
+      <div style="display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:8px 16px;border-radius:2px;border:1px solid rgba(203,178,122,.28);background:rgba(203,178,122,.07);font-size:12.5px;letter-spacing:.05em;color:#e5d9bd">
+        <span style="width:6px;height:6px;border-radius:50%;background:#cbb27a;box-shadow:0 0 12px #cbb27a;animation:pulse 2.6s ease-in-out infinite"></span>{{ t.heroKicker }}
+      </div>
+      <h1 style="margin:0;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:clamp(40px,6.6vw,78px);line-height:1.02;font-weight:600;letter-spacing:-.02em;background:linear-gradient(100deg,#ffffff 10%,#e3e9ff 40%,#cbb27a 75%,#ffffff 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 12s linear infinite">{{ t.heroName }}</h1>
+      <p style="margin:0;font-family:'Readex Pro',sans-serif;font-size:clamp(17px,2vw,22px);font-weight:400;color:#b9c6ea;line-height:1.5;max-width:34ch">{{ t.heroRole }}</p>
+      <p style="margin:0;font-size:clamp(15px,1.6vw,17.5px);line-height:1.85;color:rgba(206,216,240,.72);max-width:52ch;text-wrap:pretty">{{ t.heroLine }}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:4px">
+        <a href="{{ waLink }}" target="_blank" style="padding:15px 30px;border-radius:2px;background:linear-gradient(120deg,#cbb27a,#f2e2b8);color:#14121e;font-family:'Readex Pro',sans-serif;font-size:15.5px;font-weight:600;box-shadow:0 16px 44px rgba(203,178,122,.3);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s" style-hover="transform:translateY(-3px);box-shadow:0 22px 60px rgba(203,178,122,.45);color:#14121e">{{ t.ctaPrimary }}</a>
+        <a href="#services" style="white-space:nowrap;padding:15px 30px;border-radius:2px;border:1px solid rgba(160,175,255,.28);background:rgba(255,255,255,.03);color:#e6ebfa;font-family:'Readex Pro',sans-serif;font-size:15.5px;font-weight:500;backdrop-filter:blur(8px);transition:transform .35s,border-color .35s,background .35s" style-hover="transform:translateY(-3px);border-color:rgba(180,192,255,.7);background:rgba(255,255,255,.07);color:#fff">{{ t.ctaSecondary }}</a>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:22px;margin-top:14px;padding-top:22px;border-top:1px solid rgba(255,255,255,.07)">
+        <sc-for list="{{ t.heroFacts }}" as="f" hint-placeholder-count="3">
+          <div style="display:flex;flex-direction:column;gap:5px;min-width:120px">
+            <span style="font-family:'Readex Pro',sans-serif;font-size:14.5px;color:#e9edfa;font-weight:500">{{ f.k }}</span>
+            <span style="font-size:12.5px;color:rgba(190,202,232,.55);letter-spacing:.02em">{{ f.v }}</span>
+          </div>
+        </sc-for>
+      </div>
     </div>
 
-    <!-- PHOTO JOURNEY (desktop crossfade stack) -->
-    <div class="bg-stack" aria-hidden="true">
-        <div class="bg-ph on" data-name="crest" data-src="assets/desert/crest.jpg"></div>
-        <div class="bg-ph" data-name="caravan" data-src="assets/desert/caravan.jpg"></div>
-        <div class="bg-ph" data-name="manuscript" data-src="assets/desert/manuscript.jpg"></div>
-        <div class="bg-ph" data-name="oldtown" data-src="assets/desert/oldtown.jpg"></div>
-        <div class="bg-ph" data-name="oasis" data-src="assets/desert/oasis.jpg"></div>
-        <div class="bg-ph" data-name="mosque" data-src="assets/desert/mosque.jpg"></div>
-        <div class="bg-ph" data-name="dusk" data-src="assets/desert/dusk.jpg"></div>
+    <div style="position:relative;display:grid;place-items:center;animation:fadeUp 1.2s both">
+      <div style="position:absolute;width:min(560px,100%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 45%, rgba(124,92,225,.4) 0%, rgba(76,124,243,.16) 42%, rgba(5,6,15,0) 70%);filter:blur(6px)"></div>
+      <div style="position:absolute;width:min(500px,96%);aspect-ratio:1;border-radius:50%;border:1px solid rgba(160,175,255,.16);animation:spin 60s linear infinite"></div>
+      <div style="position:absolute;width:min(420px,84%);aspect-ratio:1;border-radius:50%;border:1px dashed rgba(203,178,122,.24);animation:spin 40s linear infinite reverse"></div>
+      <div data-px="0.05" style="position:relative;width:min(400px,80%);aspect-ratio:3/4;animation:float 9s ease-in-out infinite;will-change:transform">
+        <div style="position:absolute;inset:-2px;border-radius:4px;background:conic-gradient(from 200deg,rgba(203,178,122,.9),rgba(124,92,225,.9),rgba(76,124,243,.8),rgba(203,178,122,.9));filter:blur(14px);opacity:.55"></div>
+        <div style="position:relative;width:100%;height:100%;border-radius:3px;overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 40px 120px rgba(4,6,20,.8)">
+          <img src="assets/founder.jpg" alt="Mouhamed Abdselam" style="width:100%;height:100%;object-fit:cover;object-position:50% 15%;filter:contrast(1.08) saturate(.85) brightness(1.02)">
+          <div style="position:absolute;inset:0;background:linear-gradient(200deg,rgba(76,124,243,.22),rgba(124,92,225,.18) 45%,rgba(5,6,15,.85) 100%);mix-blend-mode:screen"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,15,0) 45%,rgba(5,6,15,.55) 78%,rgba(5,6,15,.95) 100%)"></div>
+          <div style="position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.045) 0 1px,transparent 1px 4px);opacity:.5"></div>
+          <div style="position:absolute;inset-inline:18px;bottom:18px;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:2px;border:1px solid rgba(255,255,255,.12);background:rgba(10,12,28,.55);backdrop-filter:blur(12px)">
+            <span style="flex:none;width:8px;height:8px;border-radius:50%;background:#cbb27a;box-shadow:0 0 14px rgba(203,178,122,.9)"></span>
+            <span style="font-size:12.5px;line-height:1.4;color:rgba(226,232,246,.82)">{{ t.photoCaption }}</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="bg-scrim" aria-hidden="true"></div>
-    <div class="vignette" aria-hidden="true"></div>
+  </section>
 
-    <!-- HUD -->
-    <div class="hud-item hud-name">
-        <span class="mono">Mohamed Abdelsalam</span>
-        <span class="mono" data-lang-key="hudRole">مطوّر مواقع المؤسسات</span>
+  <section id="about" data-rv style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.09);max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,110px) 24px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,4vw,64px);align-items:start">
+      <div>
+        <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:rgba(203,178,122,.85);margin-bottom:16px">{{ t.aboutLabel }}</div>
+        <h2 style="margin:0 0 18px;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:clamp(28px,3.6vw,44px);line-height:1.16;font-weight:600;letter-spacing:-.015em;color:#f2f5fd">{{ t.aboutTitle }}</h2>
+        <div style="width:64px;height:2px;background:linear-gradient(90deg,#cbb27a,rgba(203,178,122,0))"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <sc-for list="{{ t.aboutParas }}" as="p" hint-placeholder-count="3">
+          <p style="margin:0;font-size:16.5px;line-height:1.95;color:rgba(206,216,240,.78);text-wrap:pretty">{{ p.text }}</p>
+        </sc-for>
+      </div>
     </div>
-    <div class="hud-item hud-lang" role="group" aria-label="Language">
-        <button class="lang-btn active" data-lang="ar" aria-label="العربية">ع</button>
-        <button class="lang-btn" data-lang="fr" aria-label="Français">FR</button>
-        <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+  </section>
+
+  <section id="atwork" data-rv style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.09);max-width:1240px;margin:0 auto;padding:clamp(34px,5vw,74px) 24px">
+    <figure style="margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02)">
+      <div style="position:relative;min-height:clamp(300px,42vw,440px);overflow:hidden">
+        <img data-px="0.09" src="assets/founder-office.jpg" alt="Mouhamed Abdselam" style="position:absolute;inset:-8%;width:116%;height:116%;object-fit:cover;object-position:50% 20%;filter:grayscale(.45) contrast(1.12) brightness(.92);will-change:transform">
+        <div style="position:absolute;inset:0;background:linear-gradient(200deg,rgba(11,35,80,.45),rgba(124,92,225,.18) 55%,rgba(5,6,15,.7))"></div>
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.035) 0 1px,transparent 1px 4px);opacity:.45"></div>
+        <div style="position:absolute;bottom:0;inset-inline:0;padding:14px 18px;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(226,232,246,.75);background:linear-gradient(0deg,rgba(5,6,15,.85),transparent)">{{ t.workStamp }}</div>
+      </div>
+      <figcaption style="padding:clamp(26px,4vw,54px);display:flex;flex-direction:column;justify-content:center;gap:18px;border-inline-start:1px solid rgba(255,255,255,.1)">
+        <div style="font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:rgba(203,178,122,.85)">{{ t.workLabel }}</div>
+        <blockquote style="margin:0;font-family:'Amiri',Georgia,serif;font-size:clamp(22px,2.6vw,32px);line-height:1.5;color:#f4f6fd;text-wrap:pretty">{{ t.workQuote }}</blockquote>
+        <div style="width:52px;height:1px;background:rgba(203,178,122,.7)"></div>
+        <p style="margin:0;font-size:15.5px;line-height:1.9;color:rgba(200,211,236,.72)">{{ t.workText }}</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section id="gallery" data-rv style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.09);max-width:1240px;margin:0 auto;padding:clamp(38px,6vw,86px) 24px">
+    <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;margin-bottom:clamp(22px,3vw,40px)">
+      <div>
+        <div style="font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:rgba(203,178,122,.85);margin-bottom:12px">{{ t.galLabel }}</div>
+        <h2 style="margin:0;font-family:'Amiri',Georgia,serif;font-size:clamp(26px,3.2vw,40px);line-height:1.2;font-weight:700;color:#f2f5fd">{{ t.galTitle }}</h2>
+      </div>
+      <p style="margin:0;max-width:44ch;font-size:15px;line-height:1.85;color:rgba(200,211,236,.66)">{{ t.galSub }}</p>
     </div>
-    <div class="hud-item hud-coords">
-        <span class="mono">18.07°N · 15.96°W — Nouakchott</span>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <figure style="margin:0;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02)">
+        <div style="position:relative;height:clamp(210px,24vw,300px)"><img src="assets/gal-ultrasound.jpg" alt="جهاز سونار تشخيصي في غرفة فحص" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.4) contrast(1.12) brightness(.9)"><div style="position:absolute;inset:0;background:linear-gradient(200deg,rgba(11,35,80,.4),rgba(124,92,225,.16) 55%,rgba(5,6,15,.7))"></div><div style="position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.035) 0 1px,transparent 1px 4px);opacity:.45"></div></div>
+        <figcaption style="padding:16px 18px;border-top:1px solid rgba(255,255,255,.1);font-size:14px;line-height:1.75;color:rgba(200,211,236,.72)">{{ t.galCap1 }}</figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02)">
+        <div style="position:relative;height:clamp(210px,24vw,300px)"><img src="assets/gal-analyser.jpg" alt="محلّل كيمياء حيوية في مخبر طبي" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.4) contrast(1.12) brightness(.9)"><div style="position:absolute;inset:0;background:linear-gradient(200deg,rgba(11,35,80,.4),rgba(124,92,225,.16) 55%,rgba(5,6,15,.7))"></div><div style="position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.035) 0 1px,transparent 1px 4px);opacity:.45"></div></div>
+        <figcaption style="padding:16px 18px;border-top:1px solid rgba(255,255,255,.1);font-size:14px;line-height:1.75;color:rgba(200,211,236,.72)">{{ t.galCap2 }}</figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02)">
+        <div style="position:relative;height:clamp(210px,24vw,300px)"><img src="assets/gal-clinic.jpg" alt="غرفة مريض مجهّزة بسرير طبي" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.4) contrast(1.12) brightness(.9)"><div style="position:absolute;inset:0;background:linear-gradient(200deg,rgba(11,35,80,.4),rgba(124,92,225,.16) 55%,rgba(5,6,15,.7))"></div><div style="position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.035) 0 1px,transparent 1px 4px);opacity:.45"></div></div>
+        <figcaption style="padding:16px 18px;border-top:1px solid rgba(255,255,255,.1);font-size:14px;line-height:1.75;color:rgba(200,211,236,.72)">{{ t.galCap3 }}</figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02)">
+        <div style="position:relative;height:clamp(210px,24vw,300px)"><img src="assets/gal-shipping.jpg" alt="شاحنة نقل بضائع على الطريق" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.4) contrast(1.12) brightness(.9)"><div style="position:absolute;inset:0;background:linear-gradient(200deg,rgba(11,35,80,.4),rgba(124,92,225,.16) 55%,rgba(5,6,15,.7))"></div><div style="position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.035) 0 1px,transparent 1px 4px);opacity:.45"></div></div>
+        <figcaption style="padding:16px 18px;border-top:1px solid rgba(255,255,255,.1);font-size:14px;line-height:1.75;color:rgba(200,211,236,.72)">{{ t.galCap4 }}</figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02)">
+        <div style="position:relative;height:clamp(210px,24vw,300px)"><img src="assets/gal-customs.jpg" alt="رافعات حاويات في ميناء تجاري" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.4) contrast(1.12) brightness(.9)"><div style="position:absolute;inset:0;background:linear-gradient(200deg,rgba(11,35,80,.4),rgba(124,92,225,.16) 55%,rgba(5,6,15,.7))"></div><div style="position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.035) 0 1px,transparent 1px 4px);opacity:.45"></div></div>
+        <figcaption style="padding:16px 18px;border-top:1px solid rgba(255,255,255,.1);font-size:14px;line-height:1.75;color:rgba(200,211,236,.72)">{{ t.galCap5 }}</figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02)">
+        <div style="position:relative;height:clamp(210px,24vw,300px)"><img src="assets/gal-marketing.jpg" alt="لوحة تحليلات تسويق رقمي على حاسوب" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.4) contrast(1.12) brightness(.9)"><div style="position:absolute;inset:0;background:linear-gradient(200deg,rgba(11,35,80,.4),rgba(124,92,225,.16) 55%,rgba(5,6,15,.7))"></div><div style="position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.035) 0 1px,transparent 1px 4px);opacity:.45"></div></div>
+        <figcaption style="padding:16px 18px;border-top:1px solid rgba(255,255,255,.1);font-size:14px;line-height:1.75;color:rgba(200,211,236,.72)">{{ t.galCap6 }}</figcaption>
+      </figure>
     </div>
-    <a class="hud-item hud-wa" href="https://wa.me/22224555506" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-        <span class="mono">WhatsApp · +222 24 55 55 06</span>
-    </a>
-    <div class="scroll-hint" aria-hidden="true">
-        <span class="mono" data-lang-key="scrollHint">مرّر</span>
-        <div class="scroll-hint-line"></div>
+  </section>
+
+  <section id="philosophy" data-rv style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.09);max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,96px) 24px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(26px,4vw,58px);align-items:end;margin-bottom:clamp(28px,4vw,48px)">
+      <div>
+        <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:rgba(160,175,255,.8);margin-bottom:14px">{{ t.philLabel }}</div>
+        <h2 style="margin:0;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:clamp(27px,3.4vw,42px);line-height:1.18;font-weight:600;letter-spacing:-.015em;color:#f2f5fd">{{ t.philTitle }}</h2>
+      </div>
+      <p style="margin:0;font-size:16px;line-height:1.9;color:rgba(206,216,240,.7);max-width:52ch">{{ t.philIntro }}</p>
     </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px">
+      <sc-for list="{{ t.philosophy }}" as="p" hint-placeholder-count="5">
+        <figure style="position:relative;margin:0;padding:32px 28px;border-radius:3px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(155deg,rgba(124,92,225,.12),rgba(255,255,255,.015));overflow:hidden;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .5s,box-shadow .5s" style-hover="transform:translateY(-7px);border-color:rgba(203,178,122,.45);box-shadow:0 30px 80px rgba(5,7,22,.75)">
+          <div style="position:absolute;top:-26px;inset-inline-start:16px;font-family:'Readex Pro',sans-serif;font-size:120px;line-height:1;color:rgba(203,178,122,.13);pointer-events:none">&ldquo;</div>
+          <blockquote style="position:relative;margin:0 0 14px;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:19.5px;line-height:1.55;font-weight:500;color:#f4f6fd;text-wrap:pretty">{{ p.q }}</blockquote>
+          <figcaption style="position:relative;font-size:14.5px;line-height:1.8;color:rgba(200,211,236,.68)">{{ p.d }}</figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </section>
 
-    <!-- CURSOR -->
-    <div class="cursor-dot" aria-hidden="true"></div>
-    <div class="cursor-ring" aria-hidden="true"></div>
+  <section id="why" data-rv style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.09);max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,90px) 24px">
+    <div style="text-align:center;margin-bottom:clamp(32px,4vw,58px)">
+      <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:rgba(203,178,122,.85);margin-bottom:14px">{{ t.whyLabel }}</div>
+      <h2 style="margin:0 auto;max-width:22ch;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:clamp(26px,3.4vw,42px);line-height:1.2;font-weight:600;letter-spacing:-.015em;color:#f2f5fd">{{ t.whyTitle }}</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:20px">
+      <sc-for list="{{ t.why }}" as="w" hint-placeholder-count="4">
+        <div style="position:relative;padding:30px 26px;border-radius:3px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.015));backdrop-filter:blur(10px);overflow:hidden;transition:transform .45s cubic-bezier(.2,.8,.2,1),border-color .45s,box-shadow .45s" style-hover="transform:translateY(-6px);border-color:rgba(203,178,122,.45);box-shadow:0 26px 70px rgba(6,8,24,.7)">
+          <div style="width:44px;height:44px;border-radius:2px;display:grid;place-items:center;margin-bottom:18px;border:1px solid rgba(203,178,122,.3);background:radial-gradient(circle at 40% 30%,rgba(203,178,122,.3),rgba(124,92,225,.18));font-family:'Readex Pro',sans-serif;font-size:15px;color:#f0e3c4">{{ w.n }}</div>
+          <h3 style="margin:0 0 10px;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:18px;font-weight:600;color:#f0f3fc;line-height:1.35">{{ w.t }}</h3>
+          <p style="margin:0;font-size:14.5px;line-height:1.8;color:rgba(200,211,236,.68)">{{ w.d }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
 
-    <main>
-        <!-- HERO — pure, empty desert. The journey has not begun. -->
-        <section class="scene hero" id="hero" data-bg="crest">
-            <div class="scene-photo" aria-hidden="true"><img src="assets/desert/crest-m.jpg" alt=""></div>
-            <div class="stage hero-eyebrow"><span class="mono" style="color: inherit;" data-lang-key="heroEyebrow">مطوّر مواقع المؤسسات — موريتانيا</span></div>
-            <h1 class="stage display hero-name" data-lang-key="heroName">محمد عبد السلام</h1>
-            <div class="stage hero-sep"></div>
-            <p class="stage hero-tagline" data-lang-key="heroTag">سيكولوجية الرغبة تُقابل التسويق الرقمي</p>
-            <p class="stage hero-sub" data-lang-key="heroSub">أبني للمؤسسات مواقع كاملة ومتاجر إلكترونية بلوحات تحكم سهلة — حضور رقمي يليق بمؤسستك، ويبيع.</p>
-        </section>
-
-        <!-- VISION — the caravan sets out -->
-        <section class="scene chaptered" id="vision" data-bg="caravan">
-            <div class="chapter-cover" aria-hidden="true">
-                <img src="assets/desert/caravan-m.jpg" alt="" loading="lazy">
-                <div class="cover-scrim"></div>
-                <div class="cover-label"><span class="mono" data-lang-key="sec1Tag">٠١ · الرؤية</span></div>
+  <section id="skills" data-rv style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.09);max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,90px) 24px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(30px,4vw,64px)">
+      <div>
+        <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:rgba(203,178,122,.85);margin-bottom:14px">{{ t.skillsLabel }}</div>
+        <h2 style="margin:0 0 26px;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:clamp(26px,3.2vw,40px);line-height:1.2;font-weight:600;letter-spacing:-.015em;color:#f2f5fd">{{ t.skillsTitle }}</h2>
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <sc-for list="{{ t.skillGroups }}" as="g" hint-placeholder-count="3">
+            <div>
+              <div style="font-family:'Readex Pro',sans-serif;font-size:14px;color:#cbb27a;margin-bottom:12px;letter-spacing:.02em">{{ g.t }}</div>
+              <div style="display:flex;flex-wrap:wrap;gap:9px">
+                <sc-for list="{{ g.items }}" as="s" hint-placeholder-count="4">
+                  <span style="padding:9px 15px;border-radius:2px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.035);font-size:13.5px;color:rgba(219,227,247,.85);transition:.3s" style-hover="border-color:rgba(203,178,122,.6);background:rgba(203,178,122,.1)">{{ s.label }}</span>
+                </sc-for>
+              </div>
             </div>
-            <div class="scene-inner panel reveal">
-                <div class="scene-tag"><span class="mono" data-lang-key="sec1Tag">٠١ · الرؤية</span></div>
-                <p class="manifesto-text" data-lang-key="manifesto">
-                    مواقع ومتاجر تُبنى <em>بصبر الصحراء</em>، وتُصقل <em>بدقّة الذهب</em>، وتُصمَّم <em>لتُحرّك الرغبة</em> —
-                    رحلة تبدأ بفهم عميق لجمهورك، وتنتهي بحضور رقمي يليق بمؤسستك ويبيع.
-                </p>
-                <div class="stats-row">
-                    <div>
-                        <span class="stat-num" data-lang-key="stat1Num">+٧</span>
-                        <span class="stat-label" data-lang-key="stat1">سنوات في سيكولوجية الرغبة والمبيعات</span>
-                    </div>
-                    <div>
-                        <span class="stat-num" data-lang-key="stat2Num">+٥</span>
-                        <span class="stat-label" data-lang-key="stat2">سنوات في التسويق الرقمي</span>
-                    </div>
-                    <div>
-                        <span class="stat-num" data-lang-key="stat3Num">+٢٠٠</span>
-                        <span class="stat-label" data-lang-key="stat3">مشروع لمؤسسات وأعمال رائدة</span>
-                    </div>
-                </div>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:rgba(160,175,255,.8);margin-bottom:14px">{{ t.expLabel }}</div>
+        <div style="display:flex;flex-direction:column;gap:0;border-inline-start:1px solid rgba(255,255,255,.12);padding-inline-start:26px;margin-top:8px">
+          <sc-for list="{{ t.experience }}" as="e" hint-placeholder-count="3">
+            <div style="position:relative;padding-bottom:30px">
+              <span style="position:absolute;inset-inline-start:-33px;top:5px;width:13px;height:13px;border-radius:50%;background:#0a0d1e;border:1px solid rgba(203,178,122,.8);box-shadow:0 0 16px rgba(203,178,122,.5)"></span>
+              <div style="font-size:12.5px;letter-spacing:.06em;color:rgba(160,175,255,.75);margin-bottom:6px">{{ e.when }}</div>
+              <h3 style="margin:0 0 4px;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:17.5px;font-weight:600;color:#f0f3fc">{{ e.role }}</h3>
+              <div style="font-size:13.5px;color:#cbb27a;margin-bottom:8px">{{ e.org }}</div>
+              <p style="margin:0;font-size:14.5px;line-height:1.8;color:rgba(200,211,236,.68)">{{ e.d }}</p>
             </div>
-        </section>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- HERITAGE QUOTE — the manuscripts of Chinguetti -->
-        <section class="scene quote-scene" id="heritage" data-bg="manuscript">
-            <div class="scene-photo" aria-hidden="true"><img src="assets/desert/manuscript-m.jpg" alt="" loading="lazy"></div>
-            <div class="scene-inner">
-                <div class="quote-orn reveal" aria-hidden="true">۞</div>
-                <p class="display quote-text reveal" style="--d: 0.15s" data-lang-key="quote1">
-                    كما حفظت <em>شنقيط</em> المعرفةَ في مخطوطاتها تسعة قرون،
-                    أحفظ لمؤسستك مكانتها في العالم الرقمي.
-                </p>
-                <div class="quote-src reveal" style="--d: 0.3s"><span class="mono" data-lang-key="quote1Src">مخطوطات شنقيط — موريتانيا</span></div>
+  <section id="projects" data-rv style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.09);max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,90px) 24px">
+    <div style="margin-bottom:clamp(28px,3.5vw,50px)">
+      <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:rgba(203,178,122,.85);margin-bottom:14px">{{ t.projLabel }}</div>
+      <h2 style="margin:0;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:clamp(26px,3.2vw,40px);line-height:1.2;font-weight:600;letter-spacing:-.015em;color:#f2f5fd">{{ t.projTitle }}</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px">
+      <sc-for list="{{ t.projects }}" as="p" hint-placeholder-count="4">
+        <div style="position:relative;display:flex;flex-direction:column;gap:14px;padding:28px;border-radius:3px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(150deg,rgba(124,92,225,.1),rgba(255,255,255,.015));overflow:hidden;transition:transform .45s cubic-bezier(.2,.8,.2,1),border-color .45s,box-shadow .45s" style-hover="transform:translateY(-6px);border-color:rgba(160,175,255,.45);box-shadow:0 26px 70px rgba(6,8,24,.7)">
+          <div style="position:absolute;top:-40px;inset-inline-end:-40px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(203,178,122,.22),transparent 70%)"></div>
+          <div style="font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(203,178,122,.9)">{{ p.tag }}</div>
+          <h3 style="margin:0;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:19px;font-weight:600;color:#f2f5fd;line-height:1.35">{{ p.t }}</h3>
+          <p style="margin:0;font-size:14.5px;line-height:1.8;color:rgba(200,211,236,.7)">{{ p.d }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="services" data-rv style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.09);max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,90px) 24px">
+    <div style="text-align:center;margin-bottom:clamp(30px,4vw,54px)">
+      <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:rgba(203,178,122,.85);margin-bottom:14px">{{ t.servLabel }}</div>
+      <h2 style="margin:0 auto 14px;max-width:24ch;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:clamp(26px,3.4vw,42px);line-height:1.2;font-weight:600;letter-spacing:-.015em;color:#f2f5fd">{{ t.servTitle }}</h2>
+      <p style="margin:0 auto;max-width:56ch;font-size:15.5px;line-height:1.85;color:rgba(200,211,236,.66)">{{ t.servSub }}</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px">
+      <sc-for list="{{ t.services }}" as="s" hint-placeholder-count="5">
+        <div style="display:flex;gap:16px;align-items:flex-start;padding:26px;border-radius:3px;border:1px solid rgba(255,255,255,.075);background:rgba(255,255,255,.028);transition:transform .4s,border-color .4s,background .4s" style-hover="transform:translateY(-5px);border-color:rgba(203,178,122,.4);background:rgba(203,178,122,.06)">
+          <span style="flex:none;width:9px;height:9px;margin-top:7px;border-radius:50%;background:#cbb27a;box-shadow:0 0 14px rgba(203,178,122,.8)"></span>
+          <div>
+            <h3 style="margin:0 0 8px;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:17.5px;font-weight:600;color:#f0f3fc;line-height:1.35">{{ s.t }}</h3>
+            <p style="margin:0;font-size:14.5px;line-height:1.8;color:rgba(200,211,236,.68)">{{ s.d }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="ai" data-rv style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.09);max-width:1240px;margin:0 auto;padding:clamp(38px,6vw,88px) 24px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(26px,4vw,58px);align-items:start">
+      <div>
+        <div style="font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:rgba(160,175,255,.8);margin-bottom:12px">{{ t.aiLabel }}</div>
+        <h2 style="margin:0 0 16px;font-family:'Amiri',Georgia,serif;font-size:clamp(26px,3.2vw,40px);line-height:1.22;font-weight:700;color:#f2f5fd">{{ t.aiTitle }}</h2>
+        <p style="margin:0 0 20px;font-size:15.5px;line-height:1.9;color:rgba(200,211,236,.72)">{{ t.aiText }}</p>
+        <a href="{{ waLink }}" target="_blank" style="display:inline-block;padding:13px 26px;border:1px solid rgba(203,178,122,.55);border-radius:2px;color:#f0e3c4;font-size:14.5px;transition:.3s" style-hover="background:rgba(203,178,122,.12);color:#fff">{{ t.aiCta }}</a>
+      </div>
+      <div style="display:grid;gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1)">
+        <sc-for list="{{ t.aiItems }}" as="a" hint-placeholder-count="4">
+          <div style="padding:24px 26px;background:#080b1a;transition:background .35s" style-hover="background:#0d1226">
+            <div style="display:flex;gap:14px;align-items:baseline;margin-bottom:8px">
+              <span style="font-family:'Amiri',Georgia,serif;font-size:14px;color:#cbb27a;flex:none">{{ a.n }}</span>
+              <h3 style="margin:0;font-family:'Amiri',Georgia,serif;font-size:19px;font-weight:700;color:#f0f3fc">{{ a.t }}</h3>
             </div>
-        </section>
+            <p style="margin:0;font-size:14.5px;line-height:1.8;color:rgba(200,211,236,.68)">{{ a.d }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
 
-        <!-- METHOD — a city built stone by stone -->
-        <section class="scene chaptered" id="method" data-bg="oldtown">
-            <div class="chapter-cover" aria-hidden="true">
-                <img src="assets/desert/oldtown-m.jpg" alt="" loading="lazy">
-                <div class="cover-scrim"></div>
-                <div class="cover-label"><span class="mono" data-lang-key="methodTag">٠٢ · الطريقة</span></div>
+  <section id="vision" data-rv style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.09);max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,90px) 24px">
+    <div style="position:relative;padding:clamp(30px,5vw,64px);border-radius:4px;border:1px solid rgba(255,255,255,.09);background:radial-gradient(120% 130% at 15% 0%,rgba(124,92,225,.22),rgba(255,255,255,.02) 60%);overflow:hidden">
+      <div style="position:absolute;inset-inline-end:-90px;bottom:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(203,178,122,.18),transparent 68%)"></div>
+      <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(26px,4vw,54px)">
+        <div>
+          <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:rgba(203,178,122,.85);margin-bottom:14px">{{ t.visionLabel }}</div>
+          <h2 style="margin:0 0 16px;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:clamp(24px,3vw,36px);line-height:1.28;font-weight:600;color:#f4f6fd">{{ t.visionTitle }}</h2>
+          <p style="margin:0;font-size:16px;line-height:1.9;color:rgba(206,216,240,.75)">{{ t.visionText }}</p>
+        </div>
+        <div style="display:grid;gap:14px">
+          <sc-for list="{{ t.values }}" as="v" hint-placeholder-count="4">
+            <div style="display:flex;gap:14px;align-items:baseline;padding:16px 18px;border-radius:2px;border:1px solid rgba(255,255,255,.08);background:rgba(5,7,20,.35)">
+              <span style="font-family:'Readex Pro',sans-serif;font-size:13px;color:#cbb27a;flex:none">{{ v.n }}</span>
+              <div>
+                <div style="font-family:'Readex Pro',sans-serif;font-size:15.5px;color:#eef1fb;margin-bottom:5px">{{ v.t }}</div>
+                <div style="font-size:13.5px;line-height:1.7;color:rgba(198,209,235,.65)">{{ v.d }}</div>
+              </div>
             </div>
-            <div class="scene-inner panel reveal">
-                <div class="scene-tag"><span class="mono" data-lang-key="methodTag">٠٢ · الطريقة</span></div>
-                <h2 class="display section-title" data-lang-key="methodTitle">أربع محطات من الفكرة إلى الإطلاق</h2>
-                <div class="svc-list">
-                    <div class="svc-row">
-                        <span class="svc-num">I</span>
-                        <h3 class="svc-title" data-lang-key="m1t">الإصغاء</h3>
-                        <p class="svc-desc" data-lang-key="m1d">أبدأ بالاستماع: قصة مؤسستك، أهدافك، وجمهورك. لا تصميم قبل الفهم — فالموقع الناجح يُبنى على معرفة دقيقة بمن سيزوره ولماذا.</p>
-                    </div>
-                    <div class="svc-row">
-                        <span class="svc-num">II</span>
-                        <h3 class="svc-title" data-lang-key="m2t">التصميم</h3>
-                        <p class="svc-desc" data-lang-key="m2d">أرسم تجربة تقود الزائر بهدوء نحو القرار — تسلسل الصفحات، الرسائل، والألوان، كلها مبنية على سيكولوجية الرغبة وهوية علامتك.</p>
-                    </div>
-                    <div class="svc-row">
-                        <span class="svc-num">III</span>
-                        <h3 class="svc-title" data-lang-key="m3t">البناء</h3>
-                        <p class="svc-desc" data-lang-key="m3d">أبني موقعًا سريعًا وآمنًا متعدد اللغات، بلوحة تحكم بسيطة تُحدّث بها محتواك بنفسك دون أي خبرة تقنية.</p>
-                    </div>
-                    <div class="svc-row">
-                        <span class="svc-num">IV</span>
-                        <h3 class="svc-title" data-lang-key="m4t">الإطلاق والمرافقة</h3>
-                        <p class="svc-desc" data-lang-key="m4d">أطلق موقعك وأتابع أداءه بالأرقام، وأرافقك بالتحسين والدعم حتى يحقق الهدف الذي بُني لأجله.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- EXPERTISE — the oasis -->
-        <section class="scene chaptered" id="expertise" data-bg="oasis">
-            <div class="chapter-cover" aria-hidden="true">
-                <img src="assets/desert/oasis-m.jpg" alt="" loading="lazy">
-                <div class="cover-scrim"></div>
-                <div class="cover-label"><span class="mono" data-lang-key="sec2Tag">٠٣ · الخبرات</span></div>
-            </div>
-            <div class="scene-inner panel reveal">
-                <div class="scene-tag"><span class="mono" data-lang-key="sec2Tag">٠٣ · الخبرات</span></div>
-                <h2 class="display section-title" data-lang-key="servicesTitle">خبرات تتكامل لتُنتج نتائج</h2>
-                <div class="svc-list">
-                    <div class="svc-row">
-                        <span class="svc-num">I</span>
-                        <h3 class="svc-title" data-lang-key="svc4Title">بناء مواقع المؤسسات</h3>
-                        <p class="svc-desc" data-lang-key="svc4Desc">مواقع مؤسسية ومتاجر إلكترونية كاملة متعددة اللغات (عربي، فرنسي، إنجليزي)، بلوحة تحكم سهلة تُدير بها محتواك بنفسك دون خبرة تقنية — سريعة، آمنة، ومتقنة على الجوال والحاسوب، من الفكرة إلى الإطلاق.</p>
-                    </div>
-                    <div class="svc-row">
-                        <span class="svc-num">II</span>
-                        <h3 class="svc-title" data-lang-key="svc2Title">سيكولوجية الرغبة</h3>
-                        <p class="svc-desc" data-lang-key="svc2Desc">7 سنوات من الدراسة والتطبيق في علم نفس الرغبة — أعرف متى يشتري العميل، ولماذا يتردد، وكيف أُقنعه دون أن يشعر أنه يُقاد. أطبّق مبادئ الندرة، الدليل الاجتماعي، والتحيّزات المعرفية بدقة.</p>
-                    </div>
-                    <div class="svc-row">
-                        <span class="svc-num">III</span>
-                        <h3 class="svc-title" data-lang-key="svc3Title">التسويق الرقمي الاستراتيجي</h3>
-                        <p class="svc-desc" data-lang-key="svc3Desc">5 سنوات في خنادق التسويق الرقمي — من تحليل البيانات إلى تحسين الحملات. أربط بين الصفحة والسوق، فأضمن أن التصميم لا يُعجب فقط، بل يُحقّق أرقاماً.</p>
-                    </div>
-                    <div class="svc-row">
-                        <span class="svc-num">IV</span>
-                        <h3 class="svc-title" data-lang-key="svc1Title">تصميم صفحات الهبوط</h3>
-                        <p class="svc-desc" data-lang-key="svc1Desc">تصاميم احترافية مبنية على فهم عميق لسلوك المستخدم، مع دعم كامل للغات متعددة (العربية، الإنجليزية، الفرنسية) وتجربة سلسة على جميع الأجهزة. كل بكسل في مكانه لخدمة هدف التحويل.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <section id="process" data-rv style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.09);max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,90px) 24px">
+    <div style="margin-bottom:clamp(28px,3.5vw,50px);text-align:center">
+      <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:rgba(160,175,255,.8);margin-bottom:14px">{{ t.procLabel }}</div>
+      <h2 style="margin:0;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:clamp(26px,3.2vw,40px);line-height:1.2;font-weight:600;letter-spacing:-.015em;color:#f2f5fd">{{ t.procTitle }}</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px">
+      <sc-for list="{{ t.steps }}" as="s" hint-placeholder-count="4">
+        <div style="position:relative;padding:26px 22px;border-radius:3px;border:1px solid rgba(255,255,255,.075);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.012))">
+          <div style="font-family:'Readex Pro',sans-serif;font-size:34px;font-weight:300;color:rgba(203,178,122,.5);line-height:1;margin-bottom:14px">{{ s.n }}</div>
+          <h3 style="margin:0 0 8px;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:16.5px;font-weight:600;color:#f0f3fc">{{ s.t }}</h3>
+          <p style="margin:0;font-size:14px;line-height:1.75;color:rgba(200,211,236,.66)">{{ s.d }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
 
-        <!-- WORKS — at the mosque of Chinguetti -->
-        <section class="scene chaptered" id="works" data-bg="mosque">
-            <div class="chapter-cover" aria-hidden="true">
-                <img src="assets/desert/mosque-m.jpg" alt="" loading="lazy">
-                <div class="cover-scrim"></div>
-                <div class="cover-label"><span class="mono" data-lang-key="sec3Tag">٠٤ · الأعمال</span></div>
-            </div>
-            <div class="scene-inner panel reveal">
-                <div class="scene-tag"><span class="mono" data-lang-key="sec3Tag">٠٤ · الأعمال</span></div>
-                <h2 class="display section-title" data-lang-key="worksTitle">مشاريع حيّة الآن</h2>
-                <a class="work-item" href="https://abdselam1.github.io/rim-medical/index.html" target="_blank" rel="noopener">
-                    <h3 class="display work-title">Rim Medical <span class="work-arrow">↗</span></h3>
-                    <div class="work-meta">
-                        <span class="work-live" data-lang-key="workLive">يعمل الآن</span>
-                        <span class="mono" data-lang-key="work1Meta">متجر ثلاثي اللغات بلوحة تحكم · المعدات الطبية</span>
-                    </div>
-                </a>
-                <a class="work-item" href="https://abdselam1.github.io/rim-medical/sened.html" target="_blank" rel="noopener">
-                    <h3 class="display work-title"><span data-lang-key="work2Title">سند SENED</span> <span class="work-arrow">↗</span></h3>
-                    <div class="work-meta">
-                        <span class="work-live" data-lang-key="workLive">يعمل الآن</span>
-                        <span class="mono" data-lang-key="work2Meta">موقع مؤسسي فاخر بنظام بلاغات · المعدات الطبية</span>
-                    </div>
-                </a>
-            </div>
-        </section>
+  <section id="impact" data-rv style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.09);max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,80px) 24px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(26px,4vw,54px);align-items:center;padding:clamp(26px,4vw,46px);border-radius:3px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025)">
+      <div>
+        <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:rgba(203,178,122,.85);margin-bottom:14px">{{ t.impactLabel }}</div>
+        <h2 style="margin:0 0 14px;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:clamp(23px,2.8vw,34px);line-height:1.28;font-weight:600;color:#f2f5fd">{{ t.impactTitle }}</h2>
+        <p style="margin:0;font-size:15.5px;line-height:1.9;color:rgba(206,216,240,.72)">{{ t.impactText }}</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ t.impactItems }}" as="i" hint-placeholder-count="2">
+          <div style="display:flex;gap:12px;align-items:center;padding:15px 18px;border-radius:2px;border:1px solid rgba(203,178,122,.22);background:rgba(203,178,122,.05);font-size:14.5px;color:rgba(226,232,246,.86)">
+            <span style="width:7px;height:7px;border-radius:50%;background:#cbb27a;flex:none"></span>{{ i.label }}
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
 
-        <!-- PLANS — choose your path along the crest -->
-        <section class="scene chaptered" id="plans" data-bg="crest">
-            <div class="chapter-cover" aria-hidden="true">
-                <img src="assets/desert/crest-m.jpg" alt="" loading="lazy">
-                <div class="cover-scrim"></div>
-                <div class="cover-label"><span class="mono" data-lang-key="sec4Tag">٠٥ · الخطط</span></div>
-            </div>
-            <div class="scene-inner panel reveal">
-                <div class="scene-tag"><span class="mono" data-lang-key="sec4Tag">٠٥ · الخطط</span></div>
-                <h2 class="display section-title" data-lang-key="plansTitle">اختر الخطة التي تناسب مؤسستك</h2>
-                <p class="plans-desc" data-lang-key="plansDesc">جميع الخطط قابلة للتخصيص حسب احتياجاتك. تواصل معي لمناقشة التفاصيل واستلام عرض سعر مخصص.</p>
-                <div class="plans-grid">
-                    <div class="plan">
-                        <h3 class="plan-name" data-lang-key="plan1Name">الأساسية</h3>
-                        <p class="plan-desc" data-lang-key="plan1Desc">للمؤسسات الناشئة التي تريد صفحة هبوط احترافية واحدة.</p>
-                        <ul class="plan-features">
-                            <li data-lang-key="plan1f1">موقع تعريفي مؤسسي أو صفحة هبوط</li>
-                            <li data-lang-key="plan1f2">دعم لغتين (العربية + الإنجليزية)</li>
-                            <li data-lang-key="plan1f3">تصميم متجاوب مع جميع الأجهزة</li>
-                            <li data-lang-key="plan1f4">تكامل مع واتساب ونماذج التواصل</li>
-                            <li data-lang-key="plan1f5">تحسين أساسي لمحركات البحث</li>
-                            <li data-lang-key="plan1f6">تسليم خلال 5-7 أيام عمل</li>
-                        </ul>
-                        <a href="https://wa.me/22224555506?text=مرحباً، أريد الاستفسار عن الخطة الأساسية" target="_blank" rel="noopener noreferrer" class="plan-cta" data-lang-key="planCta">استفسر عن الخطة</a>
-                    </div>
-                    <div class="plan featured">
-                        <span class="plan-badge" data-lang-key="planBadge">الأكثر طلباً</span>
-                        <h3 class="plan-name" data-lang-key="plan2Name">المتكاملة</h3>
-                        <p class="plan-desc" data-lang-key="plan2Desc">للمؤسسات المتوسطة الباحثة عن حل تسويقي متكامل مع سيكولوجية المبيعات.</p>
-                        <ul class="plan-features">
-                            <li data-lang-key="plan2f1">موقع مؤسسي كامل + حتى 3 صفحات هبوط</li>
-                            <li data-lang-key="plan2f2">دعم ثلاث لغات (عربية + إنجليزية + فرنسية)</li>
-                            <li data-lang-key="plan2f3">تطبيق مبادئ سيكولوجية الرغبة</li>
-                            <li data-lang-key="plan2f4">تحليل الجمهور المستهدف ورسائل مقنعة</li>
-                            <li data-lang-key="plan2f5">تكامل مع أدوات التسويق (Google، Meta)</li>
-                            <li data-lang-key="plan2f6">تقارير أداء شهرية</li>
-                            <li data-lang-key="plan2f7">دعم فني لمدة 30 يوماً</li>
-                        </ul>
-                        <a href="https://wa.me/22224555506?text=مرحباً، أريد الاستفسار عن الخطة المتكاملة" target="_blank" rel="noopener noreferrer" class="plan-cta" data-lang-key="planCta">استفسر عن الخطة</a>
-                    </div>
-                    <div class="plan">
-                        <h3 class="plan-name" data-lang-key="plan3Name">المؤسسية</h3>
-                        <p class="plan-desc" data-lang-key="plan3Desc">للمؤسسات الكبيرة والمشاريع المعقدة التي تحتاج حلاً شاملاً ومخصصاً بالكامل.</p>
-                        <ul class="plan-features">
-                            <li data-lang-key="plan3f1">مواقع ومتاجر إلكترونية وصفحات بلا حدود</li>
-                            <li data-lang-key="plan3f2">استراتيجية مبيعات متكاملة</li>
-                            <li data-lang-key="plan3f3">بحث متقدم في سيكولوجية الجمهور</li>
-                            <li data-lang-key="plan3f4">تكامل مع أنظمة المؤسسة (CRM)</li>
-                            <li data-lang-key="plan3f5">تحسين مستمر بناءً على البيانات</li>
-                            <li data-lang-key="plan3f6">دعم فني وأولوية في التنفيذ</li>
-                            <li data-lang-key="plan3f7">جلسات استشارية شهرية</li>
-                        </ul>
-                        <a href="https://wa.me/22224555506?text=مرحباً، أريد الاستفسار عن الخطة المؤسسية" target="_blank" rel="noopener noreferrer" class="plan-cta" data-lang-key="planCta">استفسر عن الخطة</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <section id="faq" data-rv style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.09);max-width:900px;margin:0 auto;padding:clamp(40px,6vw,90px) 24px">
+    <div style="text-align:center;margin-bottom:clamp(26px,3.5vw,44px)">
+      <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:rgba(160,175,255,.8);margin-bottom:14px">{{ t.faqLabel }}</div>
+      <h2 style="margin:0;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:clamp(25px,3vw,38px);line-height:1.2;font-weight:600;color:#f2f5fd">{{ t.faqTitle }}</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="4">
+        <div style="border-radius:2px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.028);overflow:hidden">
+          <button onClick="{{ f.toggle }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;background:transparent;border:0;cursor:pointer;color:#eef1fb;font-family:'Readex Pro',sans-serif;font-size:16px;font-weight:500;text-align:start;transition:color .25s" style-hover="color:#cbb27a">
+            <span>{{ f.q }}</span>
+            <span style="flex:none;width:26px;height:26px;border-radius:50%;border:1px solid rgba(203,178,122,.4);display:grid;place-items:center;font-size:16px;color:#cbb27a">{{ f.sign }}</span>
+          </button>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.9;color:rgba(200,211,236,.72);animation:fadeUp .4s both">{{ f.a }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
 
-        <!-- HORIZON QUOTE — dusk -->
-        <section class="scene quote-scene" id="horizon" data-bg="dusk">
-            <div class="scene-photo" aria-hidden="true"><img src="assets/desert/dusk-m.jpg" alt="" loading="lazy"></div>
-            <div class="scene-inner">
-                <div class="quote-orn reveal" aria-hidden="true">۞</div>
-                <p class="display quote-text reveal" style="--d: 0.15s" data-lang-key="quote2">
-                    كل مشروع رحلة — وأجمل الرحلات تلك التي نقطعها <em>معًا</em> حتى الأفق.
-                </p>
-            </div>
-        </section>
+  <section id="contact" data-rv style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.09);max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,80px) 24px clamp(60px,7vw,110px)">
+    <div style="position:relative;text-align:center;padding:clamp(38px,6vw,84px) clamp(24px,4vw,60px);border-radius:4px;border:1px solid rgba(255,255,255,.1);background:radial-gradient(110% 130% at 50% 0%,rgba(124,92,225,.28),rgba(5,7,20,.4) 62%);overflow:hidden">
+      <div style="position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:min(620px,120%);aspect-ratio:1;border-radius:50%;border:1px solid rgba(203,178,122,.14);animation:spin 90s linear infinite"></div>
+      <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:22px">
+        <img src="assets/founder.jpg" alt="" style="width:78px;height:78px;border-radius:50%;object-fit:cover;object-position:50% 16%;box-shadow:0 0 0 2px rgba(203,178,122,.55),0 0 50px rgba(124,92,225,.4)">
+        <h2 style="margin:0;max-width:22ch;font-family:'Amiri',Georgia,'Times New Roman',serif;font-size:clamp(27px,3.6vw,44px);line-height:1.18;font-weight:600;letter-spacing:-.015em;color:#f6f8fe">{{ t.ctaTitle }}</h2>
+        <p style="margin:0;max-width:50ch;font-size:16px;line-height:1.85;color:rgba(206,216,240,.72)">{{ t.ctaText }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:6px">
+          <a href="{{ waLink }}" target="_blank" style="padding:15px 30px;border-radius:2px;background:linear-gradient(120deg,#cbb27a,#f2e2b8);color:#14121e;font-family:'Readex Pro',sans-serif;font-size:15.5px;font-weight:600;box-shadow:0 16px 44px rgba(203,178,122,.3);transition:transform .35s" style-hover="transform:translateY(-3px);color:#14121e">{{ t.waLabel }}</a>
+          <a href="{{ mailLink }}" style="padding:15px 30px;border-radius:2px;border:1px solid rgba(160,175,255,.3);background:rgba(255,255,255,.04);color:#e9edfa;font-family:'Readex Pro',sans-serif;font-size:15.5px;font-weight:500;transition:transform .35s,border-color .35s" style-hover="transform:translateY(-3px);border-color:rgba(180,192,255,.7);color:#fff">{{ t.mailLabel }}</a>
+          <a href="{{ liLink }}" target="_blank" style="padding:15px 30px;border-radius:2px;border:1px solid rgba(255,255,255,.14);background:transparent;color:#dbe2f5;font-family:'Readex Pro',sans-serif;font-size:15.5px;font-weight:500;transition:transform .35s,border-color .35s" style-hover="transform:translateY(-3px);border-color:rgba(203,178,122,.6);color:#fff">LinkedIn</a>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px 26px;justify-content:center;margin-top:14px;font-size:13.5px;color:rgba(190,202,232,.6)">
+          <span>+222 24 55 55 06</span><span>mouhamedabselam25@gmail.com</span><span>{{ t.city }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- CONTACT — dusk -->
-        <section class="scene contact" id="contact" data-bg="dusk">
-            <div class="scene-photo" aria-hidden="true"><img src="assets/desert/dusk-m.jpg" alt="" loading="lazy"></div>
-            <div class="scene-inner">
-                <div class="scene-tag reveal"><span class="mono" data-lang-key="sec5Tag">٠٦ · التواصل</span></div>
-                <h2 class="display contact-title reveal" style="--d: 0.1s" data-lang-key="contactTitle">لِنَبدأ الحديث</h2>
-                <p class="contact-desc reveal" style="--d: 0.2s" data-lang-key="contactDesc">أفضل طريقة للبدء هي محادثة مباشرة. أخبرني عن مشروعك، وسأقدّم لك رؤية واضحة قبل أن تدفع أي شيء.</p>
-                <div class="contact-actions reveal" style="--d: 0.3s">
-                    <a href="https://wa.me/22224555506" target="_blank" rel="noopener noreferrer" class="btn-wa">
-                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        <span data-lang-key="ctaWa">واتساب مباشر</span>
-                    </a>
-                    <a href="tel:+22224555506" class="btn-call" data-lang-key="ctaCall">اتصال هاتفي</a>
-                </div>
-                <div class="contact-number reveal" style="--d: 0.4s">
-                    <span class="mono">+222 24 55 55 06 · Nouakchott, Mauritanie</span>
-                </div>
-                <div class="photo-credits reveal" style="--d: 0.5s">
-                    <a class="mono" href="https://commons.wikimedia.org/" target="_blank" rel="noopener noreferrer">Photos: Wikimedia Commons — T. Fuhrmann, V. Guillot, O. Havelka, F. Colin, Bertramz, M. Natti (CC BY-SA / CC0)</a>
-                </div>
-            </div>
-        </section>
-    </main>
+  <footer style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.07);padding:26px 24px;background:rgba(4,5,13,.6)">
+    <div style="max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;font-size:13px;color:rgba(180,192,222,.55)">
+      <div style="display:flex;align-items:center;gap:11px">
+        <img src="assets/founder.jpg" alt="" style="width:26px;height:26px;border-radius:50%;object-fit:cover;object-position:50% 16%;opacity:.92">
+        <span>{{ t.footer }}</span>
+      </div>
+      <div style="display:flex;gap:18px">
+        <a href="{{ mailLink }}" style="color:rgba(180,192,222,.7)" style-hover="color:#cbb27a">Email</a>
+        <a href="{{ waLink }}" target="_blank" style="color:rgba(180,192,222,.7)" style-hover="color:#cbb27a">WhatsApp</a>
+        <a href="{{ liLink }}" target="_blank" style="color:rgba(180,192,222,.7)" style-hover="color:#cbb27a">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+</div>
+</template>
 
-    <script>
-        (function () {
-            'use strict';
+<script>
+/* ------------------------------------------------------------------
+   محرّك عرض صغير يُشغّل قالب الموقع (sc-for / sc-if / {{ }} / onClick /
+   style-hover) بدون أي مكتبة خارجية. مكتوب ليطابق سلوك محرّر التصميم.
+------------------------------------------------------------------ */
+(function () {
+  'use strict';
 
-            /* ==================== TRANSLATIONS ==================== */
-            const translations = {
-                ar: {
-                    hudRole: 'مطوّر مواقع المؤسسات',
-                    scrollHint: 'مرّر',
-                    heroEyebrow: 'مطوّر مواقع المؤسسات — موريتانيا',
-                    heroName: 'محمد عبد السلام',
-                    heroTag: 'سيكولوجية الرغبة تُقابل التسويق الرقمي',
-                    heroSub: 'أبني للمؤسسات مواقع كاملة ومتاجر إلكترونية بلوحات تحكم سهلة — حضور رقمي يليق بمؤسستك، ويبيع.',
-                    sec1Tag: '٠١ · الرؤية',
-                    manifesto: 'مواقع ومتاجر تُبنى <em>بصبر الصحراء</em>، وتُصقل <em>بدقّة الذهب</em>، وتُصمَّم <em>لتُحرّك الرغبة</em> — رحلة تبدأ بفهم عميق لجمهورك، وتنتهي بحضور رقمي يليق بمؤسستك ويبيع.',
-                    stat1Num: '+٧', stat1: 'سنوات في سيكولوجية الرغبة والمبيعات',
-                    stat2Num: '+٥', stat2: 'سنوات في التسويق الرقمي',
-                    stat3Num: '+٢٠٠', stat3: 'مشروع لمؤسسات وأعمال رائدة',
-                    quote1: 'كما حفظت <em>شنقيط</em> المعرفةَ في مخطوطاتها تسعة قرون، أحفظ لمؤسستك مكانتها في العالم الرقمي.',
-                    quote1Src: 'مخطوطات شنقيط — موريتانيا',
-                    methodTag: '٠٢ · الطريقة',
-                    methodTitle: 'أربع محطات من الفكرة إلى الإطلاق',
-                    m1t: 'الإصغاء',
-                    m1d: 'أبدأ بالاستماع: قصة مؤسستك، أهدافك، وجمهورك. لا تصميم قبل الفهم — فالموقع الناجح يُبنى على معرفة دقيقة بمن سيزوره ولماذا.',
-                    m2t: 'التصميم',
-                    m2d: 'أرسم تجربة تقود الزائر بهدوء نحو القرار — تسلسل الصفحات، الرسائل، والألوان، كلها مبنية على سيكولوجية الرغبة وهوية علامتك.',
-                    m3t: 'البناء',
-                    m3d: 'أبني موقعًا سريعًا وآمنًا متعدد اللغات، بلوحة تحكم بسيطة تُحدّث بها محتواك بنفسك دون أي خبرة تقنية.',
-                    m4t: 'الإطلاق والمرافقة',
-                    m4d: 'أطلق موقعك وأتابع أداءه بالأرقام، وأرافقك بالتحسين والدعم حتى يحقق الهدف الذي بُني لأجله.',
-                    quote2: 'كل مشروع رحلة — وأجمل الرحلات تلك التي نقطعها <em>معًا</em> حتى الأفق.',
-                    sec2Tag: '٠٣ · الخبرات',
-                    servicesTitle: 'خبرات تتكامل لتُنتج نتائج',
-                    svc4Title: 'بناء مواقع المؤسسات',
-                    svc4Desc: 'مواقع مؤسسية ومتاجر إلكترونية كاملة متعددة اللغات (عربي، فرنسي، إنجليزي)، بلوحة تحكم سهلة تُدير بها محتواك بنفسك دون خبرة تقنية — سريعة، آمنة، ومتقنة على الجوال والحاسوب، من الفكرة إلى الإطلاق.',
-                    svc2Title: 'سيكولوجية الرغبة',
-                    svc2Desc: '7 سنوات من الدراسة والتطبيق في علم نفس الرغبة — أعرف متى يشتري العميل، ولماذا يتردد، وكيف أُقنعه دون أن يشعر أنه يُقاد. أطبّق مبادئ الندرة، الدليل الاجتماعي، والتحيّزات المعرفية بدقة.',
-                    svc3Title: 'التسويق الرقمي الاستراتيجي',
-                    svc3Desc: '5 سنوات في خنادق التسويق الرقمي — من تحليل البيانات إلى تحسين الحملات. أربط بين الصفحة والسوق، فأضمن أن التصميم لا يُعجب فقط، بل يُحقّق أرقاماً.',
-                    svc1Title: 'تصميم صفحات الهبوط',
-                    svc1Desc: 'تصاميم احترافية مبنية على فهم عميق لسلوك المستخدم، مع دعم كامل للغات متعددة (العربية، الإنجليزية، الفرنسية) وتجربة سلسة على جميع الأجهزة. كل بكسل في مكانه لخدمة هدف التحويل.',
-                    sec3Tag: '٠٤ · الأعمال',
-                    worksTitle: 'مشاريع حيّة الآن',
-                    workLive: 'يعمل الآن',
-                    work1Meta: 'متجر ثلاثي اللغات بلوحة تحكم · المعدات الطبية',
-                    work2Title: 'سند SENED',
-                    work2Meta: 'موقع مؤسسي فاخر بنظام بلاغات · المعدات الطبية',
-                    sec4Tag: '٠٥ · الخطط',
-                    plansTitle: 'اختر الخطة التي تناسب مؤسستك',
-                    plansDesc: 'جميع الخطط قابلة للتخصيص حسب احتياجاتك. تواصل معي لمناقشة التفاصيل واستلام عرض سعر مخصص.',
-                    plan1Name: 'الأساسية',
-                    plan1Desc: 'للمؤسسات الناشئة التي تريد صفحة هبوط احترافية واحدة.',
-                    plan1f1: 'موقع تعريفي مؤسسي أو صفحة هبوط',
-                    plan1f2: 'دعم لغتين (العربية + الإنجليزية)',
-                    plan1f3: 'تصميم متجاوب مع جميع الأجهزة',
-                    plan1f4: 'تكامل مع واتساب ونماذج التواصل',
-                    plan1f5: 'تحسين أساسي لمحركات البحث',
-                    plan1f6: 'تسليم خلال 5-7 أيام عمل',
-                    plan2Name: 'المتكاملة',
-                    plan2Desc: 'للمؤسسات المتوسطة الباحثة عن حل تسويقي متكامل مع سيكولوجية المبيعات.',
-                    plan2f1: 'موقع مؤسسي كامل + حتى 3 صفحات هبوط',
-                    plan2f2: 'دعم ثلاث لغات (عربية + إنجليزية + فرنسية)',
-                    plan2f3: 'تطبيق مبادئ سيكولوجية الرغبة',
-                    plan2f4: 'تحليل الجمهور المستهدف ورسائل مقنعة',
-                    plan2f5: 'تكامل مع أدوات التسويق (Google، Meta)',
-                    plan2f6: 'تقارير أداء شهرية',
-                    plan2f7: 'دعم فني لمدة 30 يوماً',
-                    plan3Name: 'المؤسسية',
-                    plan3Desc: 'للمؤسسات الكبيرة والمشاريع المعقدة التي تحتاج حلاً شاملاً ومخصصاً بالكامل.',
-                    plan3f1: 'مواقع ومتاجر إلكترونية وصفحات بلا حدود',
-                    plan3f2: 'استراتيجية مبيعات متكاملة',
-                    plan3f3: 'بحث متقدم في سيكولوجية الجمهور',
-                    plan3f4: 'تكامل مع أنظمة المؤسسة (CRM)',
-                    plan3f5: 'تحسين مستمر بناءً على البيانات',
-                    plan3f6: 'دعم فني وأولوية في التنفيذ',
-                    plan3f7: 'جلسات استشارية شهرية',
-                    planBadge: 'الأكثر طلباً',
-                    planCta: 'استفسر عن الخطة',
-                    sec5Tag: '٠٦ · التواصل',
-                    contactTitle: 'لِنَبدأ الحديث',
-                    contactDesc: 'أفضل طريقة للبدء هي محادثة مباشرة. أخبرني عن مشروعك، وسأقدّم لك رؤية واضحة قبل أن تدفع أي شيء.',
-                    ctaWa: 'واتساب مباشر',
-                    ctaCall: 'اتصال هاتفي',
-                },
-                en: {
-                    hudRole: 'Institutional Web Developer',
-                    scrollHint: 'Scroll',
-                    heroEyebrow: 'Institutional Web Developer — Mauritania',
-                    heroName: 'Mohamed Abdelsalam',
-                    heroTag: 'Psychology of Desire Meets Digital Marketing',
-                    heroSub: 'I build complete websites and online stores with easy admin panels for institutions — a digital presence worthy of your institution, that sells.',
-                    sec1Tag: '01 · Vision',
-                    manifesto: 'Websites and stores built with <em>the desert\'s patience</em>, polished with <em>the precision of gold</em>, designed <em>to move desire</em> — a journey that begins with a deep understanding of your audience and ends with a digital presence worthy of your institution, one that sells.',
-                    stat1Num: '+7', stat1: 'Years in psychology of desire & sales',
-                    stat2Num: '+5', stat2: 'Years in digital marketing',
-                    stat3Num: '+200', stat3: 'Projects for leading institutions & businesses',
-                    quote1: 'As <em>Chinguetti</em> guarded knowledge in its manuscripts for nine centuries, I guard your institution\'s standing in the digital world.',
-                    quote1Src: 'The manuscripts of Chinguetti — Mauritania',
-                    methodTag: '02 · The Method',
-                    methodTitle: 'Four Stations from Idea to Launch',
-                    m1t: 'Listening',
-                    m1d: 'I start by listening: your institution\'s story, goals, and audience. No design before understanding — a successful website is built on knowing exactly who will visit it, and why.',
-                    m2t: 'Design',
-                    m2d: 'I craft an experience that calmly leads the visitor toward a decision — page flow, messaging, and color, all grounded in the psychology of desire and your brand identity.',
-                    m3t: 'Build',
-                    m3d: 'I build a fast, secure, multilingual website with a simple admin panel that lets you update your content yourself — no technical experience needed.',
-                    m4t: 'Launch & Care',
-                    m4d: 'I launch your website, track its performance with real numbers, and stay beside you with optimization and support until it achieves what it was built for.',
-                    quote2: 'Every project is a journey — and the finest journeys are the ones we take <em>together</em>, all the way to the horizon.',
-                    sec2Tag: '03 · Expertise',
-                    servicesTitle: 'Integrated Expertise That Delivers Results',
-                    svc4Title: 'Institutional Website Development',
-                    svc4Desc: 'Complete multilingual corporate websites and online stores (Arabic, French, English), with an easy admin panel to manage your content yourself — fast, secure, and polished on mobile and desktop, from idea to launch.',
-                    svc2Title: 'Psychology of Desire',
-                    svc2Desc: '7 years of study and application in desire psychology — I know when a customer buys, why they hesitate, and how to persuade without them feeling led. I apply scarcity, social proof, and cognitive biases with precision.',
-                    svc3Title: 'Strategic Digital Marketing',
-                    svc3Desc: '5 years in the digital marketing trenches — from data analysis to campaign optimization. I connect the page to the market, ensuring the design doesn\'t just impress, but delivers numbers.',
-                    svc1Title: 'Landing Page Design',
-                    svc1Desc: 'Professional designs built on deep understanding of user behavior, with full multilingual support (Arabic, English, French) and seamless experience across all devices. Every pixel serves the conversion goal.',
-                    sec3Tag: '04 · Works',
-                    worksTitle: 'Projects Live Right Now',
-                    workLive: 'Live now',
-                    work1Meta: 'Trilingual store with admin panel · Medical equipment',
-                    work2Title: 'SENED',
-                    work2Meta: 'Premium corporate site with complaints system · Medical equipment',
-                    sec4Tag: '05 · Plans',
-                    plansTitle: 'Choose the Plan That Fits Your Institution',
-                    plansDesc: 'All plans are customizable to your needs. Contact me to discuss details and receive a tailored quote.',
-                    plan1Name: 'Essential',
-                    plan1Desc: 'For startups seeking a single professional landing page.',
-                    plan1f1: 'One corporate site or landing page',
-                    plan1f2: 'Bilingual support (Arabic + English)',
-                    plan1f3: 'Fully responsive design',
-                    plan1f4: 'WhatsApp & contact form integration',
-                    plan1f5: 'Basic SEO optimization',
-                    plan1f6: 'Delivery within 5-7 business days',
-                    plan2Name: 'Integrated',
-                    plan2Desc: 'For mid-sized institutions seeking a complete marketing solution with sales psychology.',
-                    plan2f1: 'Full institutional website + up to 3 landing pages',
-                    plan2f2: 'Trilingual support (AR + EN + FR)',
-                    plan2f3: 'Desire psychology principles applied',
-                    plan2f4: 'Target audience analysis & persuasive copy',
-                    plan2f5: 'Marketing tools integration (Google, Meta)',
-                    plan2f6: 'Monthly performance reports',
-                    plan2f7: '30-day technical support',
-                    plan3Name: 'Enterprise',
-                    plan3Desc: 'For large institutions and complex projects requiring a fully customized comprehensive solution.',
-                    plan3f1: 'Unlimited websites, stores & landing pages',
-                    plan3f2: 'Full sales strategy integration',
-                    plan3f3: 'Advanced audience psychology research',
-                    plan3f4: 'CRM & enterprise system integration',
-                    plan3f5: 'Continuous data-driven optimization',
-                    plan3f6: 'Priority support & execution',
-                    plan3f7: 'Monthly consulting sessions',
-                    planBadge: 'Most Requested',
-                    planCta: 'Inquire About This Plan',
-                    sec5Tag: '06 · Contact',
-                    contactTitle: 'Let\'s Talk',
-                    contactDesc: 'The best way to begin is a direct chat. Tell me about your project, and I\'ll give you a clear vision before you commit to anything.',
-                    ctaWa: 'WhatsApp Direct',
-                    ctaCall: 'Phone Call',
-                },
-                fr: {
-                    hudRole: 'Développeur Web Institutionnel',
-                    scrollHint: 'Défiler',
-                    heroEyebrow: 'Développeur Web Institutionnel — Mauritanie',
-                    heroName: 'Mohamed Abdelsalam',
-                    heroTag: 'La Psychologie du Désir Rencontre le Marketing Digital',
-                    heroSub: 'Je construis pour les institutions des sites complets et des boutiques en ligne avec panneaux d\'administration simples — une présence digitale digne de votre institution, qui vend.',
-                    sec1Tag: '01 · Vision',
-                    manifesto: 'Des sites et des boutiques bâtis avec <em>la patience du désert</em>, polis avec <em>la précision de l\'or</em>, conçus pour <em>éveiller le désir</em> — un voyage qui commence par une compréhension profonde de votre public et s\'achève par une présence digitale digne de votre institution, qui vend.',
-                    stat1Num: '+7', stat1: 'Ans en psychologie du désir & vente',
-                    stat2Num: '+5', stat2: 'Ans en marketing digital',
-                    stat3Num: '+200', stat3: 'Projets pour institutions & entreprises leaders',
-                    quote1: 'Comme <em>Chinguetti</em> a gardé le savoir dans ses manuscrits durant neuf siècles, je garde la place de votre institution dans le monde numérique.',
-                    quote1Src: 'Les manuscrits de Chinguetti — Mauritanie',
-                    methodTag: '02 · La Méthode',
-                    methodTitle: 'Quatre Étapes, de l\'Idée au Lancement',
-                    m1t: 'L\'écoute',
-                    m1d: 'Je commence par écouter : l\'histoire de votre institution, vos objectifs, votre public. Pas de design avant la compréhension — un site réussi se construit en sachant précisément qui le visitera, et pourquoi.',
-                    m2t: 'Le design',
-                    m2d: 'Je dessine une expérience qui guide calmement le visiteur vers la décision — parcours, messages et couleurs, fondés sur la psychologie du désir et votre identité de marque.',
-                    m3t: 'La construction',
-                    m3d: 'Je construis un site rapide, sécurisé et multilingue, avec un panneau d\'administration simple pour mettre à jour votre contenu vous-même — sans aucune expérience technique.',
-                    m4t: 'Lancement & suivi',
-                    m4d: 'Je lance votre site, je suis ses performances avec des chiffres réels, et je reste à vos côtés — optimisation et support — jusqu\'à ce qu\'il atteigne son objectif.',
-                    quote2: 'Chaque projet est un voyage — et les plus beaux sont ceux que l\'on parcourt <em>ensemble</em>, jusqu\'à l\'horizon.',
-                    sec2Tag: '03 · Expertises',
-                    servicesTitle: 'Des Compétences Intégrées Qui Produisent des Résultats',
-                    svc4Title: 'Développement de Sites Institutionnels',
-                    svc4Desc: 'Sites institutionnels et boutiques en ligne complets et multilingues (arabe, français, anglais), avec un panneau d\'administration simple pour gérer votre contenu vous-même — rapides, sécurisés et soignés sur mobile et ordinateur, de l\'idée au lancement.',
-                    svc2Title: 'Psychologie du Désir',
-                    svc2Desc: '7 ans d\'étude et d\'application en psychologie du désir — je sais quand un client achète, pourquoi il hésite, et comment persuader sans qu\'il se sente manipulé. J\'applique rareté, preuve sociale et biais cognitifs avec précision.',
-                    svc3Title: 'Marketing Digital Stratégique',
-                    svc3Desc: '5 ans dans les tranchées du marketing digital — de l\'analyse de données à l\'optimisation des campagnes. Je relie la page au marché pour garantir que le design ne fait pas qu\'impressionner, mais livre des chiffres.',
-                    svc1Title: 'Conception de Pages d\'Atterrissage',
-                    svc1Desc: 'Designs professionnels basés sur une compréhension approfondie du comportement utilisateur, avec support multilingue complet (arabe, anglais, français) et expérience fluide sur tous les appareils.',
-                    sec3Tag: '04 · Projets',
-                    worksTitle: 'Projets En Ligne Actuellement',
-                    workLive: 'En ligne',
-                    work1Meta: 'Boutique trilingue avec panneau admin · Équipement médical',
-                    work2Title: 'SENED',
-                    work2Meta: 'Site corporate premium avec système de réclamations · Équipement médical',
-                    sec4Tag: '05 · Plans',
-                    plansTitle: 'Choisissez le Plan Adapté à Votre Institution',
-                    plansDesc: 'Tous les plans sont personnalisables selon vos besoins. Contactez-moi pour discuter des détails et recevoir un devis sur mesure.',
-                    plan1Name: 'Essentiel',
-                    plan1Desc: 'Pour les startups cherchant une page d\'atterrissage professionnelle unique.',
-                    plan1f1: 'Un site vitrine ou une page d\'atterrissage',
-                    plan1f2: 'Support bilingue (Arabe + Anglais)',
-                    plan1f3: 'Design entièrement responsive',
-                    plan1f4: 'Intégration WhatsApp & formulaire',
-                    plan1f5: 'Optimisation SEO de base',
-                    plan1f6: 'Livraison sous 5-7 jours ouvrés',
-                    plan2Name: 'Intégré',
-                    plan2Desc: 'Pour les institutions de taille moyenne cherchant une solution marketing complète avec psychologie de vente.',
-                    plan2f1: 'Site institutionnel complet + jusqu\'à 3 pages d\'atterrissage',
-                    plan2f2: 'Support trilingue (AR + EN + FR)',
-                    plan2f3: 'Principes de psychologie du désir appliqués',
-                    plan2f4: 'Analyse d\'audience & copy persuasive',
-                    plan2f5: 'Intégration outils marketing (Google, Meta)',
-                    plan2f6: 'Rapports de performance mensuels',
-                    plan2f7: 'Support technique 30 jours',
-                    plan3Name: 'Enterprise',
-                    plan3Desc: 'Pour les grandes institutions et projets complexes nécessitant une solution complète entièrement personnalisée.',
-                    plan3f1: 'Sites, boutiques et pages illimités',
-                    plan3f2: 'Stratégie de vente complète intégrée',
-                    plan3f3: 'Recherche avancée en psychologie d\'audience',
-                    plan3f4: 'Intégration CRM & systèmes d\'entreprise',
-                    plan3f5: 'Optimisation continue basée sur les données',
-                    plan3f6: 'Support prioritaire & exécution rapide',
-                    plan3f7: 'Sessions de consultation mensuelles',
-                    planBadge: 'Le Plus Demandé',
-                    planCta: 'Demander Ce Plan',
-                    sec5Tag: '06 · Contact',
-                    contactTitle: 'Parlons-en',
-                    contactDesc: 'La meilleure façon de commencer est un échange direct. Parlez-moi de votre projet, et je vous donnerai une vision claire avant tout engagement.',
-                    ctaWa: 'WhatsApp Direct',
-                    ctaCall: 'Appel Téléphonique',
-                }
-            };
+  var TPL = null;
+  var ROOT = null;
 
-            let currentLang = 'ar';
-            try { currentLang = localStorage.getItem('rim_dev_lang') || 'ar'; } catch (e) {}
-            if (!translations[currentLang]) currentLang = 'ar';
+  function resolve(path, scope) {
+    path = String(path == null ? '' : path).trim();
+    if (path === 'true') return true;
+    if (path === 'false') return false;
+    if (path === '') return undefined;
+    var parts = path.split('.');
+    var cur = scope;
+    for (var i = 0; i < parts.length; i++) {
+      if (cur == null) return undefined;
+      cur = cur[parts[i]];
+    }
+    return cur;
+  }
 
-            function applyTranslations(lang) {
-                const data = translations[lang];
-                if (!data) return;
-                currentLang = lang;
-                document.querySelectorAll('[data-lang-key]').forEach(el => {
-                    const key = el.getAttribute('data-lang-key');
-                    if (data[key] !== undefined) el.innerHTML = data[key];
-                });
-                document.documentElement.setAttribute('lang', lang);
-                document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-                document.querySelectorAll('.lang-btn').forEach(btn => {
-                    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-                });
-                try { localStorage.setItem('rim_dev_lang', lang); } catch (e) {}
-            }
+  function interp(str, scope) {
+    return str.replace(/\{\{([^}]*)\}\}/g, function (_, expr) {
+      var v = resolve(expr, scope);
+      return v == null ? '' : String(v);
+    });
+  }
 
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.addEventListener('click', () => applyTranslations(btn.getAttribute('data-lang')));
-            });
+  // القيمة الخام حين يكون النص عبارة عن {{ ... }} فقط
+  function soleExpr(str) {
+    var m = /^\s*\{\{([^}]*)\}\}\s*$/.exec(str || '');
+    return m ? m[1] : null;
+  }
 
-            if (currentLang !== 'ar') applyTranslations(currentLang);
+  function hasExpr(str) {
+    return str.indexOf('{{') !== -1;
+  }
 
-            /* ==================== PRELOADER ==================== */
-            const preNum = document.getElementById('preloaderNum');
-            const preBar = document.getElementById('preloaderBar');
-            const preStart = performance.now();
-            const preDuration = window.matchMedia('(max-width: 768px)').matches ? 900 : 1700;
+  function bindHover(el, baseStyle, hoverStyle) {
+    el.addEventListener('mouseenter', function () {
+      el.setAttribute('style', baseStyle + ';' + hoverStyle);
+    });
+    el.addEventListener('mouseleave', function () {
+      el.setAttribute('style', baseStyle);
+    });
+  }
 
-            function preTick(now) {
-                const raw = Math.min(1, (now - preStart) / preDuration);
-                const eased = 1 - Math.pow(1 - raw, 3);
-                preNum.textContent = String(Math.floor(eased * 100)).padStart(3, '0');
-                preBar.style.width = (eased * 100) + '%';
-                if (raw < 1) requestAnimationFrame(preTick);
-                else document.body.classList.add('loaded');
-            }
-            requestAnimationFrame(preTick);
-            /* safety: never trap the visitor behind the preloader */
-            setTimeout(function () { document.body.classList.add('loaded'); }, preDuration + 800);
+  function processNodes(nodes, scope, out) {
+    for (var i = 0; i < nodes.length; i++) processNode(nodes[i], scope, out);
+  }
 
-            /* ==================== SCROLL STATE ==================== */
-            let scrollT = 0;
-            function updateScroll() {
-                const total = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-                scrollT = Math.min(1, window.scrollY / total);
-                document.body.classList.toggle('scrolled', window.scrollY > 40);
-            }
-            window.addEventListener('scroll', updateScroll, { passive: true });
-            updateScroll();
+  function processNode(node, scope, out) {
+    if (node.nodeType === 3) {
+      var txt = node.nodeValue;
+      out.appendChild(document.createTextNode(hasExpr(txt) ? interp(txt, scope) : txt));
+      return;
+    }
+    if (node.nodeType !== 1) return;
 
-            /* ==================== PHOTO JOURNEY BACKGROUNDS (desktop) ==================== */
-            const phoneMQ = window.matchMedia('(max-width: 768px)');
-            const bgPhotos = document.querySelectorAll('.bg-ph');
-            function loadBgs() {
-                if (phoneMQ.matches) return;
-                bgPhotos.forEach(function (el) {
-                    if (!el.style.backgroundImage) {
-                        el.style.backgroundImage = 'url("' + el.getAttribute('data-src') + '")';
-                    }
-                });
-            }
-            loadBgs();
-            window.addEventListener('resize', loadBgs);
+    var tag = node.tagName.toLowerCase();
 
-            const bgByName = {};
-            bgPhotos.forEach(function (el) { bgByName[el.getAttribute('data-name')] = el; });
-            let bgActive = document.querySelector('.bg-ph.on');
-            const bgIO = new IntersectionObserver(function (entries) {
-                entries.forEach(function (en) {
-                    if (!en.isIntersecting) return;
-                    const name = en.target.getAttribute('data-bg');
-                    const ph = bgByName[name];
-                    if (!ph || ph === bgActive) return;
-                    if (bgActive) bgActive.classList.remove('on');
-                    bgActive = ph;
-                    ph.classList.add('on');
-                });
-            }, { threshold: 0.35 });
-            document.querySelectorAll('[data-bg]').forEach(function (s) { bgIO.observe(s); });
-            /* ==================== EMERGE REVEALS ==================== */
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in');
-                        io.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.18, rootMargin: '0px 0px -10% 0px' });
-            document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    if (tag === 'sc-for') {
+      var list = resolve(soleExpr(node.getAttribute('list')), scope) || [];
+      var as = node.getAttribute('as');
+      for (var k = 0; k < list.length; k++) {
+        var inner = Object.create(scope);
+        inner[as] = list[k];
+        processNodes(node.childNodes, inner, out);
+      }
+      return;
+    }
 
-            /* ==================== CURSOR ==================== */
-            if (window.matchMedia('(pointer: fine)').matches) {
-                const dot = document.querySelector('.cursor-dot');
-                const ring = document.querySelector('.cursor-ring');
-                let rx = 0, ry = 0, cx2 = 0, cy2 = 0;
-                window.addEventListener('mousemove', (e) => {
-                    cx2 = e.clientX; cy2 = e.clientY;
-                    dot.style.transform = 'translate(' + (cx2 - 2.5) + 'px,' + (cy2 - 2.5) + 'px)';
-                }, { passive: true });
-                (function ringLoop() {
-                    rx += (cx2 - rx) * 0.13;
-                    ry += (cy2 - ry) * 0.13;
-                    ring.style.transform = 'translate(' + (rx - 17) + 'px,' + (ry - 17) + 'px)';
-                    requestAnimationFrame(ringLoop);
-                })();
-                document.querySelectorAll('a, button').forEach(el => {
-                    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-                    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-                });
-            }
+    if (tag === 'sc-if') {
+      if (resolve(soleExpr(node.getAttribute('value')), scope)) {
+        processNodes(node.childNodes, scope, out);
+      }
+      return;
+    }
 
-            /* ==================== SIGNATURE ==================== */
-            console.log('%c ۞ سيكولوجية الرغبة تُقابل التسويق الرقمي %c +222 24 55 55 06 ',
-                'background:#080502;color:#e8bf6a;padding:6px 12px;font-size:12px;',
-                'background:#c99a3f;color:#080502;padding:6px 12px;font-size:12px;');
-        })();
-    </script>
+    var el = document.createElement(tag);
+    var hoverStyle = null;
+
+    for (var a = 0; a < node.attributes.length; a++) {
+      var name = node.attributes[a].name;
+      var value = node.attributes[a].value;
+
+      if (name.indexOf('hint-') === 0) continue;
+      if (name === 'style-hover') { hoverStyle = value; continue; }
+      if (name === 'onclick') {
+        var fn = resolve(soleExpr(value), scope);
+        if (typeof fn === 'function') el.addEventListener('click', fn);
+        continue;
+      }
+      el.setAttribute(name, hasExpr(value) ? interp(value, scope) : value);
+    }
+
+    if (hoverStyle) bindHover(el, el.getAttribute('style') || '', hoverStyle);
+
+    processNodes(node.childNodes, scope, el);
+    out.appendChild(el);
+  }
+
+  function render(app) {
+    var vals = app.renderVals();
+    var frag = document.createDocumentFragment();
+    processNodes(TPL.content.childNodes, vals, frag);
+    ROOT.textContent = '';
+    ROOT.appendChild(frag);
+    document.documentElement.setAttribute('dir', vals.dir);
+    document.documentElement.setAttribute('lang', vals.lang);
+  }
+
+  window.DCLogic = function () {};
+  window.DCLogic.prototype.setState = function (patch) {
+    var next = (typeof patch === 'function') ? patch(this.state) : patch;
+    this.state = Object.assign({}, this.state, next);
+    render(this);
+    if (this.componentDidUpdate) this.componentDidUpdate();
+  };
+
+  window.__mount = function (Component) {
+    TPL = document.getElementById('tpl');
+    ROOT = document.getElementById('app');
+    var app = new Component();
+    render(app);
+    if (app.componentDidMount) app.componentDidMount();
+  };
+})();
+const L = (a) => a.map(s => ({ label: s }));
+
+const AR = {
+  brand: 'محمد عبد السلام',
+  contactShort: 'تواصل',
+  city: 'نواكشوط، موريتانيا',
+  footer: 'محمد عبد السلام · موقع شخصي',
+  nav: [
+    { label: 'عنّي', href: '#about' },
+    { label: 'فلسفتي', href: '#philosophy' },
+    { label: 'الخبرة', href: '#skills' },
+    { label: 'أعمالي', href: '#projects' },
+    { label: 'الشراكة', href: '#services' },
+    { label: 'التقنية', href: '#ai' },
+    { label: 'تواصل', href: '#contact' }
+  ],
+  heroKicker: 'مؤسّس · قائد أعمال · نواكشوط',
+  heroName: 'محمد عبد السلام',
+  heroRole: 'أبني أعمالًا صغيرة بعقلية أنظمة كبيرة.',
+  heroLine: 'خمس سنوات بين التوريد والمبيعات والتسويق الرقمي، وشغف حقيقي بالتقنية وأدوات الذكاء الاصطناعي. أعمل من نواكشوط، وأفكّر بلا حدود.',
+  heroFacts: [
+    { k: 'نواكشوط، موريتانيا', v: 'مقرّ العمل' },
+    { k: 'العربية — لغة الأم', v: 'فرنسية وإنجليزية: أساسيات' },
+    { k: 'أعمال · توريد · تقنية', v: 'مجالات التركيز' }
+  ],
+  photoCaption: 'أعمل من نواكشوط، وأبني ما أتمنى أن أجده لو كنت العميل.',
+  ctaPrimary: 'تواصل معي',
+  ctaSecondary: 'أشكال الشراكة',
+  aboutLabel: 'عنّي',
+  aboutTitle: 'رجل أعمال شاب يحب النظام أكثر من الضجيج.',
+  aboutParas: [
+    { text: 'بدأت من الميدان: تعلّمت البيع قبل أن أتعلّم الإدارة، وتعلّمت التخليص الجمركي والشحن من داخل المستندات لا من الكتب. هذا المسار جعلني أفهم العمل من أسفله إلى أعلاه.' },
+    { text: 'أسّست شركة متخصصة في توريد المعدات الطبية، وأديرها اليوم من التوريد إلى المخزون إلى العلاقة مع الموردين والعملاء. المهنة تعلّمني كل يوم أن الثقة أثمن من الصفقة.' },
+    { text: 'أستخدم أدوات الذكاء الاصطناعي كجزء من طريقة عملي اليومية، وطوّرت نظام محاسبة ثلاثي اللغة لتنظيم عملي. إلى جانب ذلك، خلفيتي في التصوير والمونتاج والتصميم تمنحني حسًّا بصريًا أستخدمه في كل ما أبنيه.' }
+  ],
+  philLabel: 'فلسفتي',
+  philTitle: 'خمس قواعد أعمل بها، لا شعارات أعلّقها.',
+  philIntro: 'العمل ليس أرقامًا فقط؛ إنه طريقة تفكير. هذه القواعد كتبتها من التجربة، ومن الأخطاء أكثر من النجاحات.',
+  philosophy: [
+    { q: 'الثقة أبطأ من البيع، وأطول عمرًا منه.', d: 'الصفقة تُغلق في يوم، والسمعة تُبنى في سنوات. لذلك أفضّل صفقة أقل وعلاقة أطول.' },
+    { q: 'النظام ميزة تنافسية، لا رفاهية.', d: 'من يعرف مخزونه ومواعيده وأرقامه بدقّة يتحرّك بثقة. الفوضى تُكلّف أكثر مما يكلّف التنظيم.' },
+    { q: 'الأداة لا تصنع الفارق، بل السؤال الذي تطرحه عليها.', d: 'الذكاء الاصطناعي يضاعف من يعرف ما يريد، ويضيع وقت من لا يعرف.' },
+    { q: 'الوضوح شكل من أشكال الاحترام.', d: 'سعر واضح، مدّة واضحة، وعد يمكن الوفاء به. الغموض ليس ذكاءً تجاريًا.' },
+    { q: 'ابنِ في بلدك ما تبحث عنه في الخارج.', d: 'كل فجوة في السوق المحلي هي دعوة للعمل، لا سبب للشكوى.' }
+  ],
+  whyLabel: 'ما يميّزني',
+  whyTitle: 'لماذا يختارني الناس للعمل معهم؟',
+  why: [
+    { n: '٠١', t: 'ميدان + مكتب', d: 'أعرف الشارع والمستند: أبيع، أفاوض، وأتابع الشحنة حتى بابك.' },
+    { n: '٠٢', t: 'تفاوض واضح', d: 'العربية لغتي الأم وبها أتفاوض بثقة، وأتعامل مع الموردين الأجانب بأساسيات الفرنسية والإنجليزية ومراسلات مكتوبة دقيقة.' },
+    { n: '٠٣', t: 'عقلية تقنية', d: 'أنظّم العمل بأدوات وأنظمة، لا بالذاكرة والورق.' },
+    { n: '٠٤', t: 'حسّ بصري', d: 'خلفية في التصوير والتصميم تجعل كل عرض أقدّمه واضحًا ومقنعًا.' }
+  ],
+  skillsLabel: 'المهارات',
+  skillsTitle: 'ما أتقنه فعلًا.',
+  skillGroups: [
+    { t: 'أعمال ومبيعات', items: L(['تطوير الأعمال', 'المبيعات والتفاوض', 'التسويق', 'التسويق الرقمي', 'خدمة العملاء']) },
+    { t: 'توريد وعمليات', items: L(['إدارة المخزون', 'سلسلة التوريد', 'التخليص الجمركي', 'الاستيراد والشحن', 'علاقات الموردين']) },
+    { t: 'تقنية وهوية', items: L(['أدوات الذكاء الاصطناعي', 'أساسيات الأمن السيبراني', 'بناء الهوية البصرية', 'إعداد العروض التقديمية']) }
+  ],
+  expLabel: 'المسار المهني',
+  experience: [
+    { when: 'فبراير ٢٠٢٥ — حتى الآن', role: 'مؤسّس ومدير', org: 'شركة سند للمعدات الطبية · نواكشوط', d: 'تأسيس الشركة وإدارتها: التوريد، المخزون، سلسلة الإمداد، العلاقات مع الموردين والعملاء، وقيادة المبيعات والتسويق الرقمي.' },
+    { when: '٢٠٢١ — فصل سابق', role: 'إنتاج محتوى بصري وهوية', org: 'عمل حرّ · خبرة سابقة', d: 'مرحلة انتهت لكنها تركت أثرًا مفيدًا: أعرف كيف تُبنى هوية بصرية متماسكة، من الشعار إلى العرض التقديمي، ولا أحتاج وسيطًا لأقدّم عملي بشكل مقنع.' },
+    { when: 'يناير ٢٠٢٢ — يونيو ٢٠٢٣', role: 'متدرّب تخليص جمركي', org: 'تدريب ميداني', d: 'إجراءات التخليص، إعداد ومراجعة مستندات الاستيراد والتصدير، ومعرفة عملية بالشحن واللوجستيك.' }
+  ],
+  projLabel: 'أعمالي',
+  projTitle: 'أعمال وإنجازات أعتزّ بها.',
+  projects: [
+    { tag: 'تقنية', t: 'نظام محاسبة ذكي ثلاثي اللغة', d: 'نظام طوّرته لتنظيم عمليات شركتي بالعربية والفرنسية والإنجليزية: فواتير، مخزون، ومتابعة أرصدة.' },
+    { tag: 'ريادة', t: 'تأسيس شركة توريد من الصفر', d: 'من فكرة إلى كيان قائم: اختيار الموردين، بناء التشكيلة، والتسعير، وإدارة أول العملاء.' },
+    { tag: 'عمليات', t: 'تجهيز عيادات ومرافق صحية', d: 'دراسة الاحتياج، اقتراح التجهيزات المناسبة للميزانية، ومتابعة التوريد حتى التركيب.' },
+    { tag: 'هوية', t: 'بناء هويتي البصرية بنفسي', d: 'صمّمت هويتي ومحتواي البصري بخلفيتي في التصوير والمونتاج، من الشعار إلى العرض التقديمي.' }
+  ],
+  servLabel: 'أشكال الشراكة',
+  servTitle: 'ما أضعه على الطاولة، وما أطلبه بالمقابل.',
+  servSub: 'لا أبيع خدمات في هذه الصفحة. أبحث عن تعاون طويل النفس في سوق المعدات الطبية: أنا أعرف السوق من الداخل، والشريك يأتي بالمنتج والتدريب.',
+  services: [
+    { t: 'وكالة أو توزيع في موريتانيا', d: 'أمثّل مصنّعًا أو موردًا في سوق أعرف عياداته ومستشفياته ولغته، وأتحمّل الجانب الميداني: العرض، التفاوض، التسليم، والمتابعة بعد البيع.' },
+    { t: 'المعرفة بالسوق والمواصفات', d: 'خبرة عملية في المعدات الطبية ومواصفاتها: أعرف ما يُطلب فعلًا هنا، وما لا يُبَاع، وما تتحمّله الميزانيات المحلية.' },
+    { t: 'الاستيراد والتخليص واللوجستيك', d: 'مستندات الاستيراد، التخليص الجمركي، والشحن — مسار أعرفه من داخله لا من الكتب، وهذا يقصّر زمن وصول أي شحنة.' },
+    { t: 'التخزين وإدارة المخزون', d: 'قدرة على التدبير في المخازن ومتابعة المخزون بأنظمة منظّمة، لا بالورق والذاكرة.' },
+    { t: 'التسويق الرقمي والهوية والعرض', d: 'أجيد بناء الهوية البصرية وإعداد العروض التقديمية وتشغيل حملة رقمية للمنتج — الشريك لا يحتاج وكالة إعلان ليصل إلى السوق.' },
+    { t: 'ما أطلبه: تدريب فنّي أولًا', d: 'منتجات وأسعار جملة وحق توزيع واضح — والأهم عندي: تدريب فنّي على المنتج. أريد أن تنمو مهارتي مع الشراكة لا أن تقف عند حدّها.' }
+  ],
+  visionLabel: 'الرؤية والقيم',
+  visionTitle: 'أن يصبح الحصول على معدات طبية موثوقة في موريتانيا أمرًا بسيطًا.',
+  visionText: 'أطمح إلى عمل يُقاس بأثره: عيادة تعمل بجهاز يعمل، وطبيب يجد ما يحتاجه محليًا بدل انتظار شهور. هذا هدف يستحق العمر.',
+  values: [
+    { n: '٠١', t: 'الصدق قبل الصفقة', d: 'لا أبيع ما لا أنصح به.' },
+    { n: '٠٢', t: 'الدقة في التفاصيل', d: 'المواصفة والمدّة والسعر كما وُعِد.' },
+    { n: '٠٣', t: 'التعلّم المستمر', d: 'تكوين ذاتي دائم في الأعمال والتقنية.' },
+    { n: '٠٤', t: 'الأثر المحلي', d: 'أعمل لسوقي أولًا، ثم أتوسّع.' }
+  ],
+  procLabel: 'كيف تبدأ الشراكة',
+  procTitle: 'أربع خطوات واضحة قبل أي التزام.',
+  steps: [
+    { n: '١', t: 'نتعرّف', d: 'مكالمة قصيرة: من أنت، ما منتجك، وما تبحث عنه في السوق الموريتاني.' },
+    { n: '٢', t: 'أقرأ السوق لك', d: 'رأي صريح في فرص منتجك محليًا: من يشتريه، بأي سعر، وما العقبة الحقيقية.' },
+    { n: '٣', t: 'نتّفق ونتدرّب', d: 'إطار واضح للتعاون، وتدريب فنّي على المنتج قبل أي وعد لعميل.' },
+    { n: '٤', t: 'نبني بالتدريج', d: 'نبدأ بحجم صغير قابل للقياس، ثم نتوسّع على نتيجة حقيقية لا على تفاؤل.' }
+  ],
+  impactLabel: 'ما أريد تعلّمه',
+  impactTitle: 'أقبل العمل الذي يعلّمني، حتى دون مقابل.',
+  impactText: 'أطمح إلى عبور قطاعات متعددة لا إلى البقاء في زاوية واحدة. لذلك أقبل التدريب والتكوين والعمل التطوعي إن كان يمنحني خبرة جديدة — والتطوع الميداني مع جمعيات محلية عديدة علّمني التنظيم والعمل تحت ضغط أكثر من أي دورة.',
+  impactItems: L(['تطوع خيري وميداني مع جمعيات محلية عديدة', 'تطوع أكاديمي', 'تدريب أو تكوين دون مقابل', 'عمل يمنحني خبرة جديدة حتى بلا أجر']),
+  faqLabel: 'أسئلة شائعة',
+  faqTitle: 'أسئلة يسألني الناس عنها.',
+  faqs: [
+    { q: 'ما نوع الشراكة التي تبحث عنها بالضبط؟', a: 'وكالة أو توزيع لمصنّع أجنبي في موريتانيا، تعاون مع شريك محلي على مشروع مشترك، أو منصب يمنحني تدريبًا فنّيًا حقيقيًا. الثلاثة تهمّني بالدرجة نفسها.' },
+    { q: 'ما الذي يجعلك الشخص المناسب في هذا السوق؟', a: 'معرفة ميدانية بالمعدات الطبية ومواصفاتها، شبكة علاقات في القطاع، وقدرة على الاستيراد والتخليص والتخزين والتسويق — من شخص واحد لا من أربع جهات.' },
+    { q: 'ماذا تريد من الشريك بالمقابل؟', a: 'منتجات، أسعار جملة، حق توزيع واضح، وتدريب فنّي. التدريب أهمّها عندي: أدخل كل شراكة وأنا أنوي أن أخرج منها بمهارة أكبر.' },
+    { q: 'بأي لغة نتواصل؟', a: 'العربية هي لغتي الأساسية وأفضّلها في النقاش. أتعامل بأساسيات الفرنسية والإنجليزية في المراسلات التجارية مع الموردين.' }
+  ],
+  ctaTitle: 'منفتح على الشراكات وفرص التعاون.',
+  ctaText: 'وكالة، توزيع، تعاون محلي، أو منصب يمنحني تدريبًا فنّيًا حقيقيًا — كل ذلك يهمّني بالدرجة نفسها. راسلني وسأردّ بنفسي، وسأقول لك بصراحة إن كان التعاون مناسبًا أو لا.',
+  galLabel: 'من الميدان',
+  galTitle: 'المجالات التي أعرفها من الداخل.',
+  galSub: 'معدات طبية، شحن وتخليص جمركي، وتسويق رقمي — سلسلة كاملة أعرف كل حلقة فيها عمليًا لا نظريًا.',
+  galCap1: 'أجهزة التشخيص — أشعة وسونار ومراقبة المريض: الفئة التي يسألني عنها الأطباء أكثر من غيرها.',
+  galCap2: 'أجهزة المخابر والمستلزمات — طلب متكرر ومستمر، وهو ما يجعل علاقة الشريك مستمرة لا موسمية.',
+  galCap3: 'الأثاث الطبي وتجهيز العيادات — أسرّة وطاولات فحص وغرف كاملة، من أول قائمة إلى التركيب.',
+  galCap4: 'الشحن والنقل — أتابع الشحنة من المصنع إلى المخزن، وأعرف أين تضيع الأيام في الطريق.',
+  galCap5: 'التخليص الجمركي والموانئ — مستندات الاستيراد والإجراءات: تعلّمتها ميدانيًا لا من الكتب.',
+  galCap6: 'التسويق الرقمي والهوية — حملات ومحتوى وعروض تقديمية: الشريك لا يحتاج وكالة إعلان ليصل إلى السوق.',
+  aiLabel: 'التقنية في يدي',
+  aiTitle: 'أعمل بأدوات تجعل شريكي أسرع، لا بوعود.',
+  aiText: 'لا أبيع «حلول ذكاء اصطناعي». هذه أدوات أشغّلها في عملي اليومي لتقليل الخطأ وكسب الوقت — وأي شريك يتعامل معي يستفيد منها ضمنًا.',
+  aiCta: 'لنتحدّث عن التعاون',
+  aiItems: [
+    { n: '٠١', t: 'عروض أسعار في دقائق', d: 'أحوّل الطلب إلى عرض منظّم بالمواصفات والبدائل بسرعة، فلا ينتظر العميل أيامًا.' },
+    { n: '٠٢', t: 'مستندات دون خطأ يدوي', d: 'قراءة الفواتير وقوائم الشحن ومستندات التخليص آليًا — خطأ أقل في التخليص يعني شحنة لا تتأخر.' },
+    { n: '٠٣', t: 'مراسلة الموردين الأجانب', d: 'العربية لغتي، وأتعامل بالفرنسية والإنجليزية في المراسلات المكتوبة بدقّة مهنية — لغة الشريك ليست عقبة.' },
+    { n: '٠٤', t: 'مخزون تحت السيطرة', d: 'تنبيه قبل نفاد المخزون واقتراح كمية الطلب القادم — الشريك يعرف رقمه قبل أن يسأل.' }
+  ],
+  workStamp: 'نواكشوط · مكتب العمل',
+  workLabel: 'في العمل',
+  workQuote: 'أدير عملي من مكتب صغير، وأتعامل مع موردين خارج الحدود.',
+  workText: 'يوم عملي: مراجعة المخزون، مراسلة الموردين، تسعير الطلبات، ومتابعة الشحنات حتى التسليم. لا شيء استعراضي في ذلك — لكنه ما يجعل الوعد قابلًا للتنفيذ.',
+  waLabel: 'واتساب',
+  mailLabel: 'البريد الإلكتروني'
+};
+
+const FR = {
+  brand: 'Mouhamed Abdselam',
+  contactShort: 'Contact',
+  city: 'Nouakchott, Mauritanie',
+  footer: 'Mouhamed Abdselam · Site personnel',
+  nav: [
+    { label: 'À propos', href: '#about' },
+    { label: 'Philosophie', href: '#philosophy' },
+    { label: 'Parcours', href: '#skills' },
+    { label: 'Réalisations', href: '#projects' },
+    { label: 'Partenariat', href: '#services' },
+    { label: 'Tech', href: '#ai' },
+    { label: 'Contact', href: '#contact' }
+  ],
+  heroKicker: 'Fondateur · Entrepreneur · Nouakchott',
+  heroName: 'Mouhamed Abdselam',
+  heroRole: "Je construis de petites entreprises avec une mentalité de grands systèmes.",
+  heroLine: "Cinq ans entre l'approvisionnement, la vente et le marketing digital, avec une vraie passion pour la technologie et les outils d'IA. Je travaille depuis Nouakchott et je pense sans frontières.",
+  heroFacts: [
+    { k: 'Nouakchott, Mauritanie', v: 'Basé à' },
+    { k: 'Arabe — langue maternelle', v: 'Français & anglais : bases' },
+    { k: 'Business · Supply · Tech', v: "Domaines d'action" }
+  ],
+  photoCaption: "Je construis ce que j'aimerais trouver si j'étais le client.",
+  ctaPrimary: 'Me contacter',
+  ctaSecondary: 'Le partenariat',
+  aboutLabel: 'À propos',
+  aboutTitle: "Un jeune entrepreneur qui préfère la rigueur au bruit.",
+  aboutParas: [
+    { text: "J'ai commencé sur le terrain : j'ai appris à vendre avant d'apprendre à gérer, et j'ai appris le dédouanement dans les documents, pas dans les livres. Ce chemin m'a fait comprendre l'entreprise de bas en haut." },
+    { text: "J'ai fondé une société spécialisée dans la fourniture d'équipements médicaux, que je dirige aujourd'hui de l'approvisionnement au stock, jusqu'aux relations fournisseurs et clients. Ce métier m'apprend chaque jour que la confiance vaut plus qu'une vente." },
+    { text: "J'utilise les outils d'IA au quotidien et j'ai développé un système comptable trilingue pour organiser mon activité. Mon expérience en photographie, montage et design me donne un sens visuel que j'applique à tout ce que je construis." }
+  ],
+  philLabel: 'Philosophie',
+  philTitle: "Cinq règles que j'applique, pas des slogans que j'affiche.",
+  philIntro: "Le business n'est pas qu'une affaire de chiffres, c'est une façon de penser. Ces règles viennent de l'expérience — et davantage des erreurs que des réussites.",
+  philosophy: [
+    { q: "La confiance est plus lente que la vente, mais elle vit plus longtemps.", d: "Une vente se conclut en un jour ; une réputation se bâtit en années. Je préfère vendre moins et durer plus." },
+    { q: "L'organisation est un avantage concurrentiel, pas un luxe.", d: "Celui qui connaît son stock, ses délais et ses chiffres avance avec confiance. Le désordre coûte toujours plus cher que la méthode." },
+    { q: "L'outil ne fait pas la différence : la question qu'on lui pose, si.", d: "L'IA multiplie celui qui sait ce qu'il veut, et fait perdre du temps à celui qui l'ignore." },
+    { q: "La clarté est une forme de respect.", d: "Un prix clair, un délai clair, une promesse tenable. Le flou n'est pas une intelligence commerciale." },
+    { q: "Construis chez toi ce que tu vas chercher ailleurs.", d: "Chaque manque du marché local est une invitation à agir, pas une raison de se plaindre." }
+  ],
+  whyLabel: 'Mes atouts',
+  whyTitle: 'Pourquoi les gens choisissent de travailler avec moi.',
+  why: [
+    { n: '01', t: 'Terrain + bureau', d: "Je connais la rue et le document : je vends, je négocie et je suis la marchandise jusqu'à votre porte." },
+    { n: '02', t: 'Négociation claire', d: "L'arabe est ma langue maternelle : j'y négocie avec assurance. Avec les fournisseurs étrangers, je travaille avec des bases de français et d'anglais et une correspondance écrite rigoureuse." },
+    { n: '03', t: 'Esprit tech', d: "J'organise le travail avec des outils et des systèmes, pas avec de la mémoire et du papier." },
+    { n: '04', t: 'Sens visuel', d: 'Un passé en photo et design rend chacune de mes propositions claire et convaincante.' }
+  ],
+  skillsLabel: 'Compétences',
+  skillsTitle: 'Ce que je maîtrise réellement.',
+  skillGroups: [
+    { t: 'Business & ventes', items: L(['Développement commercial', 'Vente & négociation', 'Marketing', 'Marketing digital', 'Service client']) },
+    { t: 'Supply & opérations', items: L(['Gestion de stock', "Chaîne d'approvisionnement", 'Dédouanement', 'Import & transport', 'Relations fournisseurs']) },
+    { t: 'Tech & identité', items: L(["Outils d'IA", 'Bases en cybersécurité', 'Identité visuelle', 'Présentations professionnelles']) }
+  ],
+  expLabel: 'Parcours',
+  experience: [
+    { when: 'Févr. 2025 — aujourd\u2019hui', role: 'Fondateur & gérant', org: 'Sened Medical Equipment · Nouakchott', d: "Création et direction : approvisionnement, stock, chaîne logistique, relations fournisseurs et clients, ventes et marketing digital." },
+    { when: '2021 — chapitre précédent', role: 'Contenu visuel & identité', org: 'Indépendant · expérience passée', d: "Une étape terminée mais utile : je sais comment se construit une identité visuelle cohérente, du logo à la présentation — et je n'ai besoin de personne pour présenter mon travail correctement." },
+    { when: 'Janv. 2022 — juin 2023', role: 'Stagiaire en dédouanement', org: 'Formation de terrain', d: "Procédures douanières, préparation et vérification des documents d'import-export, connaissance pratique du fret." }
+  ],
+  projLabel: 'Réalisations',
+  projTitle: 'Des travaux dont je suis fier.',
+  projects: [
+    { tag: 'Tech', t: 'Système comptable trilingue', d: "Un système que j'ai développé pour organiser mon activité en arabe, français et anglais : factures, stock, suivi des soldes." },
+    { tag: 'Entrepreneuriat', t: 'Une société créée de zéro', d: "D'une idée à une structure réelle : choix des fournisseurs, gamme, prix et premiers clients." },
+    { tag: 'Opérations', t: 'Équipement de cliniques', d: "Analyse du besoin, proposition adaptée au budget, suivi jusqu'à l'installation." },
+    { tag: 'Identité', t: 'Ma propre identité visuelle', d: "Logo, contenus et présentations conçus par moi, grâce à mon expérience en photo et montage." }
+  ],
+  servLabel: 'Formes de partenariat',
+  servTitle: "Ce que j'apporte, et ce que je demande en retour.",
+  servSub: "Cette page ne vend pas de prestations. Je cherche une collaboration durable dans l'équipement médical : je connais le marché de l'intérieur, le partenaire apporte le produit et la formation.",
+  services: [
+    { t: 'Représentation & distribution', d: "Représenter un fabricant sur un marché dont je connais les cliniques, les hôpitaux et la langue — et porter le terrain : présentation, négociation, livraison, suivi." },
+    { t: 'Connaissance du marché et des specs', d: "Une expérience concrète de l'équipement médical : ce qui se demande réellement ici, ce qui ne se vend pas, ce que les budgets locaux supportent." },
+    { t: 'Import, douanes & logistique', d: "Documents d'importation, dédouanement et fret — un parcours que je connais de l'intérieur, ce qui raccourcit le délai de toute expédition." },
+    { t: 'Stockage & gestion de stock', d: 'Capacité de gérer un entrepôt et de suivre le stock par des systèmes organisés, pas par du papier.' },
+    { t: 'Marketing digital, identité & pitch', d: "Identité visuelle, présentations et campagnes digitales : le partenaire n'a pas besoin d'une agence pour atteindre ce marché." },
+    { t: 'Ce que je demande : la formation', d: "Produits, prix de gros, droit de distribution clair — et surtout une formation technique sur le produit. Je veux que mes compétences grandissent avec le partenariat." }
+  ],
+  visionLabel: 'Vision & valeurs',
+  visionTitle: "Rendre simple l'accès à un équipement médical fiable en Mauritanie.",
+  visionText: "Je veux un travail qui se mesure à son impact : une clinique qui fonctionne, un médecin qui trouve localement ce qu'il attendait pendant des mois. Un objectif qui vaut une vie de travail.",
+  values: [
+    { n: '01', t: 'Honnêteté avant la vente', d: 'Je ne vends pas ce que je ne recommande pas.' },
+    { n: '02', t: 'Précision', d: 'Spécification, délai et prix comme promis.' },
+    { n: '03', t: 'Apprentissage continu', d: 'Formation constante en business et en tech.' },
+    { n: '04', t: 'Impact local', d: "D'abord mon marché, ensuite l'expansion." }
+  ],
+  procLabel: 'Démarrer un partenariat',
+  procTitle: 'Quatre étapes claires avant tout engagement.',
+  steps: [
+    { n: '1', t: 'On se connaît', d: 'Un court échange : qui vous êtes, votre produit, ce que vous cherchez en Mauritanie.' },
+    { n: '2', t: 'Je lis le marché', d: 'Un avis franc sur les chances de votre produit ici : qui achète, à quel prix, quel est le vrai obstacle.' },
+    { n: '3', t: 'Accord & formation', d: "Un cadre clair, et une formation technique sur le produit avant toute promesse au client." },
+    { n: '4', t: 'On construit', d: 'On démarre petit et mesurable, puis on élargit sur des résultats réels.' }
+  ],
+  impactLabel: 'Ce que je veux apprendre',
+  impactTitle: "J'accepte le travail qui m'apprend, même sans rémunération.",
+  impactText: "Je veux traverser plusieurs secteurs plutôt que rester dans un seul coin. J'accepte donc la formation et le bénévolat s'ils m'apportent une expérience nouvelle — et le bénévolat de terrain avec plusieurs associations locales m'a appris l'organisation et le travail sous pression mieux qu'aucune formation.",
+  impactItems: L(['Bénévolat caritatif et de terrain avec plusieurs associations locales', 'Bénévolat académique', 'Formation ou apprentissage sans rémunération', 'Un travail qui apporte une expérience nouvelle, même non payé']),
+  faqLabel: 'FAQ',
+  faqTitle: 'Les questions qu\u2019on me pose.',
+  faqs: [
+    { q: 'Quel type de partenariat cherchez-vous ?', a: "Représentation ou distribution pour un fabricant étranger en Mauritanie, un projet commun avec un partenaire local, ou un poste offrant une vraie formation technique." },
+    { q: 'Pourquoi vous, sur ce marché ?', a: "Une connaissance de terrain de l'équipement médical et de ses specs, un réseau dans le secteur, et la capacité d'importer, dédouaner, stocker et commercialiser — par une seule personne." },
+    { q: 'Que demandez-vous en retour ?', a: "Des produits, des prix de gros, un droit de distribution clair et une formation technique. La formation compte le plus." },
+    { q: 'En quelle langue échanger ?', a: "L'arabe est ma langue principale et je la préfère pour discuter. J'utilise des bases de français et d'anglais pour la correspondance commerciale." }
+  ],
+  ctaTitle: 'Ouvert aux partenariats et aux collaborations.',
+  ctaText: "Représentation, distribution, collaboration locale ou un poste qui m'apporte une vraie formation technique — tout m'intéresse au même titre. Écrivez-moi : je réponds personnellement, et franchement.",
+  galLabel: 'Sur le terrain',
+  galTitle: "Les domaines que je connais de l'intérieur.",
+  galSub: "Équipement médical, transport et dédouanement, marketing digital — une chaîne complète dont je connais chaque maillon en pratique, pas en théorie.",
+  galCap1: "Imagerie & diagnostic — radiologie, échographie, monitorage : la catégorie la plus demandée par les médecins.",
+  galCap2: 'Laboratoire & consommables — une demande récurrente, qui rend la relation partenaire continue et non saisonnière.',
+  galCap3: "Mobilier médical & aménagement — lits, tables d'examen, salles complètes, de la liste à l'installation.",
+  galCap4: "Transport & fret — je suis la marchandise de l'usine à l'entrepôt, et je sais où les jours se perdent en route.",
+  galCap5: "Dédouanement & ports — documents d'importation et procédures : appris sur le terrain, pas dans les livres.",
+  galCap6: "Marketing digital & identité — campagnes, contenu et présentations : le partenaire n'a pas besoin d'une agence pour atteindre le marché.",
+  aiLabel: 'La technique, chez moi',
+  aiTitle: "Je travaille avec des outils qui rendent mon partenaire plus rapide.",
+  aiText: "Je ne vends pas de « solutions IA ». Ce sont des outils que j'utilise au quotidien pour réduire l'erreur et gagner du temps — tout partenaire en profite implicitement.",
+  aiCta: 'Parlons collaboration',
+  aiItems: [
+    { n: '01', t: 'Assistant de devis', d: "Transformer une demande client en devis structuré, avec specs et alternatives, en minutes au lieu d'heures." },
+    { n: '02', t: 'Lecture de documents', d: 'Extraire automatiquement les données des factures, listes de colisage et documents douaniers, sans saisie manuelle.' },
+    { n: '03', t: 'Correspondance multilingue', d: "Rédiger et relire les messages fournisseurs en français et en anglais avec une rigueur professionnelle et un ton constant." },
+    { n: '04', t: 'Alertes de stock', d: 'Lire les ventes pour alerter avant la rupture et proposer la quantité de la prochaine commande.' }
+  ],
+  workStamp: 'Nouakchott · bureau',
+  workLabel: 'Au travail',
+  workQuote: "Je dirige mon activité depuis un petit bureau, avec des fournisseurs au-delà des frontières.",
+  workText: "Ma journée : vérifier le stock, écrire aux fournisseurs, chiffrer les demandes, suivre les expéditions jusqu'à la livraison. Rien de spectaculaire — mais c'est ce qui rend une promesse tenable.",
+  waLabel: 'WhatsApp',
+  mailLabel: 'Email'
+};
+
+const EN = {
+  brand: 'Mouhamed Abdselam',
+  contactShort: 'Contact',
+  city: 'Nouakchott, Mauritania',
+  footer: 'Mouhamed Abdselam · Personal site',
+  nav: [
+    { label: 'About', href: '#about' },
+    { label: 'Philosophy', href: '#philosophy' },
+    { label: 'Experience', href: '#skills' },
+    { label: 'Work', href: '#projects' },
+    { label: 'Partnership', href: '#services' },
+    { label: 'Tech', href: '#ai' },
+    { label: 'Contact', href: '#contact' }
+  ],
+  heroKicker: 'Founder · Entrepreneur · Nouakchott',
+  heroName: 'Mouhamed Abdselam',
+  heroRole: 'I build small businesses with a big-systems mindset.',
+  heroLine: 'Five years across supply, sales and digital marketing, with a real appetite for technology and AI tools. I work from Nouakchott and think without borders.',
+  heroFacts: [
+    { k: 'Nouakchott, Mauritania', v: 'Based in' },
+    { k: 'Arabic — native', v: 'French & English: basics' },
+    { k: 'Business · Supply · Tech', v: 'Focus areas' }
+  ],
+  photoCaption: 'I build what I would want to find if I were the client.',
+  ctaPrimary: 'Get in touch',
+  ctaSecondary: 'Partnership',
+  aboutLabel: 'About',
+  aboutTitle: 'A young entrepreneur who prefers order over noise.',
+  aboutParas: [
+    { text: 'I started in the field: I learned to sell before I learned to manage, and I learned customs clearance inside the paperwork rather than from books. That path taught me business from the ground up.' },
+    { text: 'I founded a company supplying medical equipment and run it today end to end — sourcing, stock, supplier and client relationships. The work reminds me daily that trust is worth more than a sale.' },
+    { text: 'AI tools are part of how I work, and I built a trilingual accounting system to keep my operation tidy. A background in photography, editing and design gives me a visual sense I apply to everything I build.' }
+  ],
+  philLabel: 'Philosophy',
+  philTitle: 'Five rules I work by — not slogans I hang on a wall.',
+  philIntro: 'Business is not only numbers; it is a way of thinking. These rules came from experience, and more from the mistakes than the wins.',
+  philosophy: [
+    { q: 'Trust is slower than a sale, and it lasts far longer.', d: 'A deal closes in a day; a reputation takes years. I would rather sell less and stay longer.' },
+    { q: 'Organization is a competitive advantage, not a luxury.', d: 'Whoever knows their stock, dates and numbers moves with confidence. Chaos always costs more than method.' },
+    { q: 'The tool is not the edge — the question you ask it is.', d: 'AI multiplies the person who knows what they want, and wastes the time of the one who does not.' },
+    { q: 'Clarity is a form of respect.', d: 'A clear price, a clear deadline, a promise you can keep. Vagueness is not business intelligence.' },
+    { q: 'Build at home what you keep importing from abroad.', d: 'Every gap in a local market is an invitation to work, not a reason to complain.' }
+  ],
+  whyLabel: 'Why me',
+  whyTitle: 'Why people choose to work with me.',
+  why: [
+    { n: '01', t: 'Field + desk', d: 'I know the street and the paperwork: I sell, negotiate and follow the shipment to your door.' },
+    { n: '02', t: 'Clear negotiation', d: 'Arabic is my native language and where I negotiate with confidence. With foreign suppliers I work in basic French and English plus careful written correspondence.' },
+    { n: '03', t: 'Tech mindset', d: 'I run operations on systems and tools, not memory and paper.' },
+    { n: '04', t: 'Visual sense', d: 'A photography and design background makes every proposal I send clear and convincing.' }
+  ],
+  skillsLabel: 'Skills',
+  skillsTitle: 'What I actually do well.',
+  skillGroups: [
+    { t: 'Business & sales', items: L(['Business development', 'Sales & negotiation', 'Marketing', 'Digital marketing', 'Customer service']) },
+    { t: 'Supply & operations', items: L(['Inventory management', 'Supply chain', 'Customs clearance', 'Import & freight', 'Supplier relations']) },
+    { t: 'Tech & identity', items: L(['AI tools', 'Cybersecurity basics', 'Brand identity', 'Business presentations']) }
+  ],
+  expLabel: 'Track record',
+  experience: [
+    { when: 'Feb 2025 — present', role: 'Founder & Manager', org: 'Sened Medical Equipment · Nouakchott', d: 'Founded and run the company: sourcing, inventory, supply chain, supplier and client relationships, sales and digital marketing.' },
+    { when: '2021 — earlier chapter', role: 'Visual content & identity', org: 'Freelance · past experience', d: 'A closed chapter that still pays off: I know how a coherent visual identity is built, from logo to presentation — and I never need anyone to present my work properly.' },
+    { when: 'Jan 2022 — Jun 2023', role: 'Customs Clearance Trainee', org: 'Field training', d: 'Clearance procedures, import/export documentation, and practical freight and logistics knowledge.' }
+  ],
+  projLabel: 'Work',
+  projTitle: 'Work I am proud of.',
+  projects: [
+    { tag: 'Tech', t: 'Trilingual accounting system', d: 'A system I built to run my operation in Arabic, French and English: invoices, inventory and balances.' },
+    { tag: 'Founding', t: 'A supply company from zero', d: 'From idea to a working entity: supplier selection, product range, pricing and first clients.' },
+    { tag: 'Operations', t: 'Clinic equipping projects', d: 'Assessing needs, proposing equipment that fits the budget, and following supply through installation.' },
+    { tag: 'Identity', t: 'My own visual identity', d: 'Logo, content and presentations designed by me, drawing on photography and editing work.' }
+  ],
+  servLabel: 'Forms of partnership',
+  servTitle: 'What I bring to the table, and what I ask in return.',
+  servSub: 'This page does not sell services. I am looking for a long-term collaboration in medical equipment: I know the market from the inside, the partner brings the product and the training.',
+  services: [
+    { t: 'Agency & distribution', d: 'Represent a manufacturer in a market whose clinics, hospitals and language I know — and carry the field work: pitch, negotiation, delivery, follow-up.' },
+    { t: 'Market and spec knowledge', d: 'Hands-on experience with medical equipment and its specifications: what is actually asked for here, what does not sell, what local budgets can carry.' },
+    { t: 'Import, customs & logistics', d: 'Import documentation, customs clearance and freight — a route I know from the inside, which shortens the lead time of any shipment.' },
+    { t: 'Warehousing & inventory', d: 'Able to manage a warehouse and track stock through organised systems, not paper and memory.' },
+    { t: 'Digital marketing, identity & pitch', d: 'Visual identity, presentations and digital campaigns: a partner does not need an agency to reach this market.' },
+    { t: 'What I ask: technical training', d: 'Products, wholesale pricing, a clear distribution right — and above all technical training on the product. I want my skills to grow with the partnership.' }
+  ],
+  visionLabel: 'Vision & values',
+  visionTitle: 'Make reliable medical equipment simple to get in Mauritania.',
+  visionText: 'I want work measured by its impact: a clinic that runs, a doctor who finds locally what used to take months. That is a goal worth a career.',
+  values: [
+    { n: '01', t: 'Honesty before the sale', d: 'I do not sell what I would not recommend.' },
+    { n: '02', t: 'Precision', d: 'Spec, timeline and price exactly as promised.' },
+    { n: '03', t: 'Constant learning', d: 'Self-taught and still studying business and tech.' },
+    { n: '04', t: 'Local impact', d: 'My market first, then expansion.' }
+  ],
+  procLabel: 'Starting a partnership',
+  procTitle: 'Four clear steps before any commitment.',
+  steps: [
+    { n: '1', t: 'We get acquainted', d: 'A short call: who you are, what your product is, what you want in Mauritania.' },
+    { n: '2', t: 'I read the market', d: 'A frank view of your product chances here: who buys, at what price, and where the real obstacle is.' },
+    { n: '3', t: 'Agreement & training', d: 'A clear framework, and technical training on the product before any promise to a client.' },
+    { n: '4', t: 'We build up', d: 'Start small and measurable, then expand on real results rather than optimism.' }
+  ],
+  impactLabel: 'What I want to learn',
+  impactTitle: 'I take on work that teaches me, even unpaid.',
+  impactText: 'I want to cross several sectors rather than settle in one corner. So I accept training and volunteering when they bring new experience — and field volunteering with several local associations taught me organisation and working under pressure better than any course.',
+  impactItems: L(['Charitable and field volunteering with several local associations', 'Academic volunteering', 'Training or apprenticeship without pay', 'Work that brings new experience, even unpaid']),
+  faqLabel: 'FAQ',
+  faqTitle: 'Questions people ask me.',
+  faqs: [
+    { q: 'What kind of partnership are you looking for?', a: 'Agency or distribution for a foreign manufacturer in Mauritania, a joint project with a local partner, or a role that gives me real technical training. All three matter equally.' },
+    { q: 'Why are you the right person in this market?', a: 'Field knowledge of medical equipment and its specs, a network inside the sector, and the ability to import, clear customs, store and market — from one person rather than four.' },
+    { q: 'What do you want from a partner in return?', a: 'Products, wholesale pricing, a clear distribution right, and technical training. Training matters most: I enter every partnership intending to leave it more skilled.' },
+    { q: 'Which language should we use?', a: 'Arabic is my main language and my preference for discussion. I handle commercial correspondence in basic French and English.' }
+  ],
+  ctaTitle: 'Open to partnerships and collaboration.',
+  galLabel: 'From the field',
+  galTitle: 'The fields I know from the inside.',
+  galSub: 'Medical equipment, freight and customs clearance, digital marketing — a full chain whose every link I know in practice, not in theory.',
+  galCap1: 'Imaging & diagnostics — X-ray, ultrasound, patient monitoring: the category doctors ask me about most.',
+  galCap2: 'Laboratory & consumables — recurring demand, which is what keeps a partnership continuous rather than seasonal.',
+  galCap3: 'Medical furniture & fit-out — beds, examination tables, whole rooms, from first list to installation.',
+  galCap4: 'Freight & shipping — I follow the goods from factory to warehouse, and I know where the days get lost on the way.',
+  galCap5: 'Customs clearance & ports — import documents and procedures: learned in the field, not from books.',
+  galCap6: 'Digital marketing & identity — campaigns, content and presentations: a partner needs no ad agency to reach the market.',
+  aiLabel: 'The tech I run on',
+  aiTitle: 'I work with tools that make a partner faster — not with promises.',
+  aiText: 'I do not sell AI solutions as a product; these are tools I run daily to cut error and buy time — any partner benefits from them implicitly.',
+  aiCta: 'Let us talk collaboration',
+  aiItems: [
+    { n: '01', t: 'Quotation assistant', d: 'Turn a client request into a structured quote with specs and alternatives in minutes instead of hours.' },
+    { n: '02', t: 'Document reader', d: 'Pull data from invoices, packing lists and clearance paperwork automatically — no manual entry.' },
+    { n: '03', t: 'Multilingual correspondence', d: 'Draft and review supplier emails in French and English with professional precision and a consistent tone.' },
+    { n: '04', t: 'Stock alerts', d: 'Read sales movement to warn before a stock-out and suggest the next order quantity.' }
+  ],
+  workStamp: 'Nouakchott · the office',
+  workLabel: 'At work',
+  workQuote: 'I run the business from a small office, with suppliers far beyond the border.',
+  workText: 'A working day: check stock, write to suppliers, price requests, track shipments to delivery. None of it is glamorous — it is what makes a promise keepable.',
+  ctaText: 'Agency, distribution, a local collaboration, or a role that gives me real technical training — all of it matters equally. Write to me: I reply personally, and frankly.',
+  waLabel: 'WhatsApp',
+  mailLabel: 'Email'
+};
+
+const DATA = { ar: AR, fr: FR, en: EN };
+
+class Component extends DCLogic {
+  state = { lang: null, open: null };
+
+  componentDidMount() {
+    try {
+      const saved = localStorage.getItem('mas_lang');
+      if (saved && DATA[saved]) this.setState({ lang: saved });
+    } catch (e) {}
+    this.reveal();
+    this.parallax();
+  }
+
+  componentDidUpdate() { this.reveal(); }
+
+  parallax() {
+    if (this._px) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    this._px = true;
+    let raf = null;
+    const tick = () => {
+      raf = null;
+      const vh = window.innerHeight;
+      document.querySelectorAll('[data-px]').forEach((el) => {
+        const r = el.getBoundingClientRect();
+        const mid = r.top + r.height / 2 - vh / 2;
+        el.style.transform = 'translate3d(0,' + (-mid * parseFloat(el.dataset.px)).toFixed(1) + 'px,0)';
+      });
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(tick); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    tick();
+  }
+
+  reveal() {
+    const nodes = Array.from(document.querySelectorAll('[data-rv]'));
+    const show = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
+    if (!('IntersectionObserver' in window)) { nodes.forEach(show); return; }
+    if (!this._io) {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { show(e.target); this._io.unobserve(e.target); } });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+      setTimeout(() => nodes.forEach(show), 2600);
+    }
+    nodes.forEach((el) => {
+      if (el.dataset.rvInit) return;
+      el.dataset.rvInit = '1';
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1)';
+      this._io.observe(el);
+    });
+  }
+
+  set(lang) {
+    try { localStorage.setItem('mas_lang', lang); } catch (e) {}
+    this.setState({ lang: lang, open: null });
+    if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  renderVals() {
+    const lang = this.state.lang || 'ar';
+    const t = DATA[lang];
+    const faqs = t.faqs.map((f, i) => ({
+      q: f.q,
+      a: f.a,
+      open: this.state.open === i,
+      sign: this.state.open === i ? '−' : '+',
+      toggle: () => this.setState((s) => ({ open: s.open === i ? null : i }))
+    }));
+    return {
+      lang: lang,
+      dir: lang === 'ar' ? 'rtl' : 'ltr',
+      t: t,
+      faqs: faqs,
+      showGate: !this.state.lang,
+      pickAr: () => this.set('ar'),
+      pickFr: () => this.set('fr'),
+      pickEn: () => this.set('en'),
+      waLink: 'https://wa.me/22224555506',
+      mailLink: 'mailto:mouhamedabselam25@gmail.com',
+      liLink: 'https://www.linkedin.com/in/mouhamed-abdselam-415879424'
+    };
+  }
+}
+__mount(Component);
+</script>
 </body>
 </html>
