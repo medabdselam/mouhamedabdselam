@@ -120,6 +120,7 @@
     cbox1k: 'Particuliers & cliniques', cbox1t: 'WhatsApp ventes',
     cbox2k: 'Gros & distribution', cbox2t: 'WhatsApp institutions',
     cbox3k: 'E-mail', cbox3t: 'Fournisseurs & offres',
+    cbox4k: 'Notre adresse', cbox4v: 'Medina 3 — Nouakchott', cbox4t: 'Ouvrir dans Google Maps',
     ctaNote: 'Nouakchott · Mauritanie — nous parlons arabe, français et anglais',
     footRights: 'Tous droits réservés'
   };
@@ -228,6 +229,7 @@
     cbox1k: 'Individuals & clinics', cbox1t: 'Sales WhatsApp',
     cbox2k: 'Wholesale & distribution', cbox2t: 'Institutions WhatsApp',
     cbox3k: 'Email', cbox3t: 'Suppliers & offers',
+    cbox4k: 'Our location', cbox4v: 'Medina 3 — Nouakchott', cbox4t: 'Open in Google Maps',
     ctaNote: 'Nouakchott · Mauritania — we speak Arabic, French and English',
     footRights: 'All rights reserved'
   };
