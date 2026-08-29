@@ -8,6 +8,8 @@
 <title>سند للمعدات الطبية — توريد وتوزيع المعدات والمستلزمات الطبية | نواكشوط</title>
 <meta name="description" content="شركة سند للمعدات الطبية في نواكشوط: مستهلكات طبية، تجهيز المستشفيات والعيادات، أجهزة فحص وتشخيص وأجهزة مختبر. بيع بالجملة للمحلات والمؤسسات وبيع مباشر للعيادات والأفراد.">
 <meta name="theme-color" content="#05070f">
+<meta name="application-name" content="سند للمعدات الطبية">
+<meta name="apple-mobile-web-app-title" content="سند">
 <link rel="canonical" href="https://mohamedabdselam.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedabdselam.com/">
@@ -34,21 +36,42 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
-  "name": "سند للمعدات الطبية",
-  "alternateName": ["Sened Medical Equipment", "Sened Équipements Médicaux"],
-  "url": "https://mohamedabdselam.com/",
-  "logo": "https://mohamedabdselam.com/assets/brand/logo-256.png",
-  "image": "https://mohamedabdselam.com/assets/brand/og-cover.jpg",
-  "description": "توريد وتوزيع المعدات والمستلزمات الطبية في موريتانيا: بيع بالجملة للمحلات والمؤسسات، وبيع مباشر للعيادات والأفراد.",
-  "address": { "@type": "PostalAddress", "addressLocality": "Nouakchott", "addressCountry": "MR" },
-  "areaServed": { "@type": "Country", "name": "Mauritania" },
-  "email": "contact@mohamedabdselam.com",
-  "contactPoint": [
-    { "@type": "ContactPoint", "telephone": "+222-32-22-22-06", "contactType": "sales", "availableLanguage": ["Arabic", "French", "English"] },
-    { "@type": "ContactPoint", "telephone": "+222-24-55-55-06", "contactType": "wholesale", "availableLanguage": ["Arabic", "French", "English"] }
-  ],
-  "knowsAbout": ["Medical Equipment", "Medical Consumables", "Laboratory Equipment", "Hospital Furniture", "Ultrasound", "Customs Clearance", "Import & Distribution"]
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://mohamedabdselam.com/#website",
+      "url": "https://mohamedabdselam.com/",
+      "name": "سند للمعدات الطبية",
+      "alternateName": ["سند", "Sened", "Sened Medical Equipment", "Sened Équipements Médicaux"],
+      "inLanguage": ["ar", "fr", "en"],
+      "publisher": { "@id": "https://mohamedabdselam.com/#organization" }
+    },
+    {
+      "@type": ["Organization", "MedicalBusiness"],
+      "@id": "https://mohamedabdselam.com/#organization",
+      "name": "سند للمعدات الطبية",
+      "alternateName": ["سند", "Sened", "Sened Medical Equipment", "Sened Équipements Médicaux"],
+      "legalName": "سند للمعدات الطبية",
+      "url": "https://mohamedabdselam.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://mohamedabdselam.com/assets/brand/logo-256.png",
+        "width": 256,
+        "height": 259
+      },
+      "image": "https://mohamedabdselam.com/assets/brand/og-cover.jpg",
+      "description": "توريد وتوزيع المعدات والمستلزمات الطبية في موريتانيا: بيع بالجملة للمحلات والمؤسسات، وبيع مباشر للعيادات والأفراد.",
+      "address": { "@type": "PostalAddress", "addressLocality": "Nouakchott", "addressCountry": "MR" },
+      "areaServed": { "@type": "Country", "name": "Mauritania" },
+      "email": "contact@mohamedabdselam.com",
+      "telephone": "+222-32-22-22-06",
+      "contactPoint": [
+        { "@type": "ContactPoint", "telephone": "+222-32-22-22-06", "contactType": "sales", "availableLanguage": ["Arabic", "French", "English"] },
+        { "@type": "ContactPoint", "telephone": "+222-24-55-55-06", "contactType": "wholesale", "availableLanguage": ["Arabic", "French", "English"] }
+      ],
+      "knowsAbout": ["Medical Equipment", "Medical Consumables", "Laboratory Equipment", "Hospital Furniture", "Ultrasound", "Customs Clearance", "Import & Distribution"]
+    }
+  ]
 }
 </script>
 </head>
