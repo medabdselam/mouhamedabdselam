@@ -383,6 +383,9 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line-2);padding:28
 .foot p{margin:0;font-size:13px;color:var(--muted)}
 .foot-brand{display:flex;align-items:center;gap:10px}
 .foot-brand img{width:26px}
+.foot-dev{display:flex;align-items:center;gap:6px}
+.foot-dev a{color:var(--gold-2);border-bottom:1px solid transparent;transition:border-color .3s,color .3s}
+.foot-dev a:hover{color:#fff;border-bottom-color:var(--gold)}
 
 /* ---------- whatsapp float ---------- */
 .wa-float{position:fixed;bottom:22px;inset-inline-end:22px;z-index:100;display:grid;place-items:center;

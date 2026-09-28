@@ -138,7 +138,8 @@
     cbox3k: 'E-mail', cbox3t: 'Fournisseurs & offres',
     cbox4k: 'Notre adresse', cbox4v: 'Medina 3 — Nouakchott', cbox4t: 'Ouvrir dans Google Maps',
     ctaNote: 'Nouakchott · Mauritanie — nous parlons arabe, français et anglais',
-    footRights: 'Tous droits réservés'
+    footRights: 'Tous droits réservés',
+    footDev: 'Développé par', footDevName: 'Sened Tech'
   };
 
   var EN = {
@@ -263,7 +264,8 @@
     cbox3k: 'Email', cbox3t: 'Suppliers & offers',
     cbox4k: 'Our location', cbox4v: 'Medina 3 — Nouakchott', cbox4t: 'Open in Google Maps',
     ctaNote: 'Nouakchott · Mauritania — we speak Arabic, French and English',
-    footRights: 'All rights reserved'
+    footRights: 'All rights reserved',
+    footDev: 'Built by', footDevName: 'Sened Tech'
   };
 
   var DICT = { fr: FR, en: EN };
