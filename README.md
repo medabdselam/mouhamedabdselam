@@ -1,7 +1,12 @@
 # سند للمعدات الطبية — Sened Medical Equipment
 
 الموقع التعريفي لشركة سند للمعدات الطبية في نواكشوط، موريتانيا.
-منشور على GitHub Pages على النطاق <https://mohamedabdselam.com>.
+منشور على GitHub Pages على النطاق <https://medical.sened.group>.
+
+> **النطاق:** كان الموقع على `mohamedabdselam.com` حتى 2026-09-28، ثم انتقل إلى
+> `medical.sened.group` (سجل CNAME في Namecheap تحت نطاق `sened.group` يشير إلى
+> `medabdselam.github.io`). النطاق القديم أُخلي منه الموقع نهائيًا وطُلب حذفه من
+> Google، فلا يجوز إعادة أي رابط قديم إلى الصفحة.
 
 ## المحتوى
 

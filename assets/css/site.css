@@ -289,6 +289,22 @@ html[lang="ar"] .label{text-transform:none}
 html[lang="fr"] .card h3,html[lang="en"] .card h3{font-family:"Inter",system-ui,sans-serif;font-size:18px}
 .card p{margin:0 24px;font-size:14.5px;color:var(--muted);line-height:1.85}
 
+/* what each family actually contains — plain text, good for scanning and for search */
+.card .tags{display:flex;flex-wrap:wrap;gap:7px;margin:15px 24px 0;position:relative;z-index:2}
+.card .tags li{padding:5px 11px;font-size:12.5px;line-height:1.6;color:rgba(222,230,247,.74);
+  border:1px solid var(--line-2);border-radius:999px;background:rgba(203,178,122,.045);transition:border-color .3s,color .3s}
+.card:hover .tags li{border-color:var(--line);color:rgba(233,237,247,.9)}
+
+/* ---------- sectors served ---------- */
+.sectors{margin-top:clamp(38px,5vw,62px);padding:clamp(26px,3.4vw,42px) clamp(20px,3vw,38px);text-align:center;
+  border:1px solid var(--line-2);border-radius:var(--r);
+  background:linear-gradient(180deg,rgba(203,178,122,.05),rgba(255,255,255,.012) 60%,transparent)}
+.sectors h3{font-family:var(--ar-disp);font-size:clamp(19px,2.3vw,25px);font-weight:700;color:var(--gold-2);margin-bottom:10px}
+html[lang="fr"] .sectors h3,html[lang="en"] .sectors h3{font-family:var(--lat-disp);font-weight:600}
+.sectors p{max-width:62ch;margin-inline:auto;margin-bottom:20px;font-size:14.5px;color:var(--muted)}
+.pills.caps,.sectors .pills{justify-content:center}
+.pills.caps{margin-top:0}
+
 /* ---------- buy channels ---------- */
 .chan{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px}
 .chan-card{position:relative;padding:clamp(28px,3.6vw,44px);border-radius:var(--r);overflow:hidden;
@@ -437,6 +453,8 @@ body.no-js .rv{opacity:1;transform:none}
   .cards,.chan,.serv{gap:16px}
   .card h3{margin-inline:20px}
   .card p{margin-inline:20px}
+  .card .tags{margin-inline:20px}
+  .serv{margin-bottom:34px}
   .why-item{gap:14px;padding:24px 20px}
   .q button{padding:17px 18px;font-size:15px}
   .q .a p{padding:0 18px 20px}
