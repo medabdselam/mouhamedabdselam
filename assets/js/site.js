@@ -44,7 +44,7 @@
 
     aboutLabel: 'À propos',
     aboutTitle: 'Une société mauritanienne dédiée à l’équipement médical — de l’import jusqu’à votre porte.',
-    aboutP1: 'Sened est une société enregistrée à Nouakchott dont le seul domaine est l’équipement et les consommables médicaux : nous ne travaillons dans aucun autre secteur. Nous importons directement auprès des fournisseurs et des fabricants de dispositifs médicaux à l’étranger et gérons nous-mêmes tout le cycle : négociation, documents, fret, dédouanement, stockage puis distribution.',
+    aboutP1: 'Sened est une société enregistrée à Nouakchott dont toute l’expérience et tout le stock sont consacrés à un seul domaine qu’elle maîtrise : l’équipement et les consommables médicaux. Nous importons directement auprès des fournisseurs et des fabricants de dispositifs médicaux à l’étranger et gérons nous-mêmes tout le cycle : négociation, documents, fret, dédouanement, stockage puis distribution.',
     aboutP2: 'Nous travaillons sur deux niveaux à la fois : la fourniture en gros aux magasins, aux sociétés d’équipement médical et aux hôpitaux, et la vente directe aux cliniques, aux professionnels et aux particuliers qui cherchent un appareil ou un consommable précis.',
     aboutP3: 'Parce que la compétence de dédouanement est interne à la société, nous calculons le coût rendu avant l’achat — le prix annoncé est le prix qui arrive.',
     pill1: 'Spécialisation médicale exclusive', pill2: 'Import direct auprès des fabricants', pill3: 'Stock permanent de consommables', pill4: 'Livraison à Nouakchott',
@@ -53,7 +53,7 @@
 
     prodLabel: 'Nos produits',
     prodTitle: 'Tout ce dont une clinique ou un hôpital a besoin — chez un seul fournisseur médical.',
-    prodSub: 'Quatre familles d’équipements et de consommables médicaux, et rien d’autre : d’une seule paire de gants à l’équipement complet d’une clinique ou à un échographe.',
+    prodSub: 'Quatre familles qui couvrent tout le besoin d’une clinique ou d’un hôpital : d’une seule paire de gants à l’équipement complet d’une clinique ou à un échographe — et ce qui n’est pas en stock, nous l’importons sur commande.',
     p1t: 'Consommables médicaux',
     p1d: 'Tout ce qu’une clinique consomme au quotidien : demande récurrente et stock permanent chez nous.',
     p1a: 'Gants d’examen', p1b: 'Seringues', p1c: 'Compresses et pansements', p1d2: 'Masques', p1e: 'Désinfectants et antiseptiques',
@@ -128,8 +128,8 @@
     a4: 'Oui, la livraison à Nouakchott. Vers les autres wilayas, l’expédition est organisée selon le volume de la commande.',
     q5: 'Représentez-vous des fabricants étrangers en Mauritanie ?',
     a5: 'Oui. Nous recherchons des accords d’agence et de distribution avec des fabricants d’équipements médicaux, et nous offrons un canal de gros établi et un dédouanement interne. Contactez-nous via le numéro gros ou par e-mail.',
-    q6: 'Vendez-vous des produits non médicaux ?',
-    a6: 'Non. Sened est spécialisée uniquement dans les équipements et consommables médicaux — c’est notre seul domaine, et tout ce que nous importons et distribuons appartient au secteur médical.',
+    q6: 'Que signifie votre spécialisation en équipement médical ?',
+    a6: 'Que toute notre expérience, notre temps et notre stock sont consacrés à un seul domaine que nous maîtrisons : du consommable le plus simple aux appareils et aux aménagements complets. Et ce que nous n’avons pas en stock, nous l’importons sur commande — la spécialisation élargit ce que nous pouvons vous procurer, elle ne le restreint pas.',
 
     ctaTitle: 'Commandez ce dont vous avez besoin dès aujourd’hui.',
     ctaText: 'Que vous soyez une clinique, un magasin, un hôpital ou un particulier — écrivez-nous et nous répondons avec le prix et la disponibilité.',
@@ -169,7 +169,7 @@
 
     aboutLabel: 'About us',
     aboutTitle: 'A Mauritanian company devoted to medical equipment alone — from import to your door.',
-    aboutP1: 'Sened is a registered company in Nouakchott whose only field is medical equipment and consumables: we trade in no other sector. We import directly from suppliers and medical device manufacturers abroad and handle the full cycle ourselves: negotiation, documentation, freight, customs clearance, warehousing and distribution.',
+    aboutP1: 'Sened is a registered company in Nouakchott whose experience and stock all sit in one field it knows well: medical equipment and consumables. We import directly from suppliers and medical device manufacturers abroad and handle the full cycle ourselves: negotiation, documentation, freight, customs clearance, warehousing and distribution.',
     aboutP2: 'We work on two levels at once: wholesale supply to retailers, medical equipment companies and hospitals, and direct sales to clinics, professionals and individuals who need a specific device or consumable.',
     aboutP3: 'Because customs clearance expertise sits inside the company, we calculate landed cost before purchase — the price we quote is the price that lands.',
     pill1: 'Medical-only specialisation', pill2: 'Direct import from manufacturers', pill3: 'Consumables always in stock', pill4: 'Delivery within Nouakchott',
@@ -178,7 +178,7 @@
 
     prodLabel: 'Our products',
     prodTitle: 'Everything a clinic or hospital needs — from one medical supplier.',
-    prodSub: 'Four families of medical equipment and consumables, and nothing outside them: from a single pair of gloves to a fully equipped clinic or an ultrasound machine.',
+    prodSub: 'Four families covering everything a clinic or hospital needs: from a single pair of gloves to a fully equipped clinic or an ultrasound machine — and whatever is not in stock, we import to order.',
     p1t: 'Medical consumables',
     p1d: 'Everything a clinic goes through daily — recurring demand, permanent stock on our side.',
     p1a: 'Examination gloves', p1b: 'Syringes & needles', p1c: 'Gauze & dressings', p1d2: 'Face masks', p1e: 'Disinfectants & antiseptics',
@@ -253,8 +253,8 @@
     a4: 'Yes, delivery within Nouakchott. Shipping to other regions is arranged according to order size.',
     q5: 'Do you represent foreign manufacturers in Mauritania?',
     a5: 'Yes. We are looking for agency and distribution agreements with medical equipment manufacturers, and we offer an established wholesale channel and in-house customs clearance. Reach us on the wholesale number or by email.',
-    q6: 'Do you sell non-medical products?',
-    a6: 'No. Sened specialises in medical equipment and consumables only — it is our single field, and everything we import and distribute belongs to the medical sector.',
+    q6: 'What does your medical specialisation mean in practice?',
+    a6: 'That all of our experience, time and stock sit in one field we know well: from the simplest daily consumable to full devices and fit-outs. And whatever is not in stock, we import to order — specialisation widens what we can source for you, it does not narrow it.',
 
     ctaTitle: 'Order what you need today.',
     ctaText: 'Whether you are a clinic, a retailer, a hospital or an individual — write to us and we reply with price and availability.',
