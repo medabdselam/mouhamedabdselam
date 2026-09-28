@@ -1,0 +1,7 @@
+# security.txt — سند للمعدات الطبية / Sened Medical Equipment
+# https://www.rfc-editor.org/rfc/rfc9116
+
+Contact: mailto:support@sened.group
+Expires: 2027-09-27T00:00:00.000Z
+Preferred-Languages: ar, en, fr
+Canonical: https://medical.sened.group/.well-known/security.txt
