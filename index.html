@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,8 +36,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css">
-<script src="assets/js/site.js" defer></script>
+<link rel="stylesheet" href="assets/css/site.css?v=20260930">
+<script src="assets/js/site.js?v=20260930" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -202,10 +202,17 @@
     </nav>
 
     <div class="hd-side">
+      <div class="language-control">
       <div class="lang" role="group" aria-label="اللغة" data-i18n-aria="langAria">
         <button type="button" data-lang="ar" class="on">ع</button>
         <button type="button" data-lang="fr">FR</button>
         <button type="button" data-lang="en">EN</button>
+      </div>
+        <div class="language-hint" id="languageHint" role="status" hidden>
+          <p lang="en" dir="ltr">Change your language here: Arabic, French or English.</p>
+          <p lang="ar" dir="rtl">يمكنك تغيير اللغة من هنا: العربية، الفرنسية أو الإنجليزية.</p>
+          <button type="button" id="dismissLanguageHint">Got it / فهمت</button>
+        </div>
       </div>
       <button type="button" id="burger" aria-label="القائمة" data-i18n-aria="menuAria" aria-expanded="false"><i></i><i></i><i></i></button>
     </div>

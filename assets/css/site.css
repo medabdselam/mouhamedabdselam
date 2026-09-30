@@ -491,3 +491,11 @@ body.no-js .rv{opacity:1;transform:none}
   .rv{opacity:1;transform:none}
   #dust,#grain,#spot{display:none}
 }
+
+/* First visit language guide */
+.language-control{position:relative}
+.language-hint{position:absolute;top:calc(100% + 14px);inset-inline-end:0;width:min(280px,calc(100vw - 32px));padding:16px;border:1px solid var(--gold);border-radius:12px;background:#171b1a;color:#fff;box-shadow:0 12px 30px rgba(0,0,0,.3);z-index:100;font-size:13px;line-height:1.7}
+.language-hint[hidden]{display:none}
+.language-hint::before{content:"";position:absolute;bottom:100%;inset-inline-end:30px;border:8px solid transparent;border-bottom-color:var(--gold)}
+.language-hint p{margin:0 0 8px}
+.language-hint button{padding:7px 14px;background:var(--gold);color:#141005;border-radius:6px}

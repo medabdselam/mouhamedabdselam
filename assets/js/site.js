@@ -288,7 +288,7 @@
   capture('data-i18n-alt', AR);
 
   function applyLang(lang) {
-    if (LANGS.indexOf(lang) === -1) lang = 'ar';
+    if (LANGS.indexOf(lang) === -1) lang = 'en';
     var d = lang === 'ar' ? AR : DICT[lang];
     var i, nodes;
 
@@ -318,15 +318,28 @@
     try { localStorage.setItem('sened_lang', lang); } catch (e) {}
   }
 
-  var stored = null;
-  try { stored = localStorage.getItem('sened_lang'); } catch (e) {}
-  if (stored && LANGS.indexOf(stored) !== -1 && stored !== 'ar') applyLang(stored);
+  applyLang('en');
+
+  var languageHint = document.getElementById('languageHint');
+  if (languageHint) {
+    try {
+      languageHint.hidden = localStorage.getItem('sened_language_hint_seen') === '1';
+      localStorage.setItem('sened_language_hint_seen', '1');
+    } catch (e) { languageHint.hidden = false; }
+    document.getElementById('dismissLanguageHint').addEventListener('click', function () {
+      languageHint.hidden = true;
+    });
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape') languageHint.hidden = true;
+    });
+  }
 
   var langBox = document.querySelector('.lang');
   if (langBox) {
     langBox.addEventListener('click', function (ev) {
       var b = ev.target.closest('button[data-lang]');
       if (!b) return;
+      if (languageHint) languageHint.hidden = true;
       applyLang(b.getAttribute('data-lang'));
       document.body.classList.add('lang-swap');
       window.setTimeout(function () { document.body.classList.remove('lang-swap'); }, 400);
